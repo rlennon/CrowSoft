@@ -1,0 +1,32 @@
+jenkins@jenkins-virtual-machine:~$ cd /var/lib/jenkins
+jenkins@jenkins-virtual-machine:/var/lib/jenkins$ sudo su - jenkins
+jenkins@jenkins-virtual-machine:~$ mkdir ./.ssh
+jenkins@jenkins-virtual-machine:~$ cd ./.ssh
+jenkins@jenkins-virtual-machine:~/.ssh$ ssh-keygen -t rsa -C "admin@172.28.25.136:8080"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/jenkins/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/jenkins/.ssh/id_rsa.
+Your public key has been saved in /home/jenkins/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:wXoonKzbgZUNPUmQnuk7cscRzIMHrAolo5PJIxTDBMk admin@172.28.25.136:8080
+The key's randomart image is:
++---[RSA 2048]----+
+|*=...o.          |
+|+Eo +o o         |
+|+* o.B+ o        |
+|Bo.o==*+ .       |
+|oo..B.+oS        |
+|.  +....         |
+|  o .o .         |
+|  .o+.o          |
+|  .o.o           |
++----[SHA256]-----+
+jenkins@jenkins-virtual-machine:~/.ssh$ eval "$(ssh-agent -s)"
+Agent pid 3564
+jenkins@jenkins-virtual-machine:~/.ssh$ ssh-add id_rsa
+Identity added: id_rsa (id_rsa)
+jenkins@jenkins-virtual-machine:~/.ssh$ cat id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOGgJt0/5V4oZU/Evpn2jsRbo8b78tPIT0G3ZVmznaCLoHjxn57dDLiFk8xv4QjRCUDb6fHqG9aXn71HEzaV7VUI7JUGtA/WyqEoCmK4XRt+LIZtDWNGpWRFUehQ4a6BaflWV4IiLrxJI8LqVIC1clSphFrDVCOilSxxr1QI6nHtullsPEJHlHsWEhA1wngANUqg8co5s8WdCr1gL+bH77wyxxTWE1w1rwUpRKjeLQEjMsd/sOXET+EHR7SXgKiBQQzewPUIub5hzlRaS/BypHCh3rn3dS+qljhShun1berm3PZTIzXsJDGOjbWLSpF/CQ+vwbwRsNA2E/itMbcxS5 admin@172.28.25.136:8080
+jenkins@jenkins-virtual-machine:~/.ssh$ 
