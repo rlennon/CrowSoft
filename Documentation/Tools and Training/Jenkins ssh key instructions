@@ -2,34 +2,34 @@ jenkins@jenkins-virtual-machine:~$ cd /var/lib/jenkins
 jenkins@jenkins-virtual-machine:/var/lib/jenkins$ sudo su - jenkins
 jenkins@jenkins-virtual-machine:~$ mkdir ./.ssh
 jenkins@jenkins-virtual-machine:~$ cd ./.ssh
-jenkins@jenkins-virtual-machine:~/.ssh$ ssh-keygen -t rsa -C "admin@172.28.25.136:8080"
+jenkins@jenkins-virtual-machine:~/.ssh$ ssh-keygen -t rsa -C "ruth.lennon@lyit.ie"
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/jenkins/.ssh/id_rsa): 
+Enter file in which to save the key (/home/jenkins/.ssh/id_rsa):  
 Enter passphrase (empty for no passphrase): 
 Enter same passphrase again: 
 Your identification has been saved in /home/jenkins/.ssh/id_rsa.
 Your public key has been saved in /home/jenkins/.ssh/id_rsa.pub.
 The key fingerprint is:
-SHA256:wXoonKzbgZUNPUmQnuk7cscRzIMHrAolo5PJIxTDBMk admin@172.28.25.136:8080
+SHA256:oA1+qjvHOM1mJmy6Fzrpri/WGXF0vLykOYqrdl6puiY ruth.lennon@lyit.ie
 The key's randomart image is:
 +---[RSA 2048]----+
-|*=...o.          |
-|+Eo +o o         |
-|+* o.B+ o        |
-|Bo.o==*+ .       |
-|oo..B.+oS        |
-|.  +....         |
-|  o .o .         |
-|  .o+.o          |
-|  .o.o           |
+|      .          |
+|     . o         |
+|    o + .        |
+|   o = =         |
+|    = * S        |
+|  .. *..         |
+| +o*=o.          |
+|E=O*@            |
+|##X%             |
 +----[SHA256]-----+
 jenkins@jenkins-virtual-machine:~/.ssh$ eval "$(ssh-agent -s)"
-Agent pid 3564
+Agent pid 3111
 jenkins@jenkins-virtual-machine:~/.ssh$ ssh-add id_rsa
 Identity added: id_rsa (id_rsa)
 jenkins@jenkins-virtual-machine:~/.ssh$ cat id_rsa.pub
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOGgJt0/5V4oZU/Evpn2jsRbo8b78tPIT0G3ZVmznaCLoHjxn57dDLiFk8xv4QjRCUDb6fHqG9aXn71HEzaV7VUI7JUGtA/WyqEoCmK4XRt+LIZtDWNGpWRFUehQ4a6BaflWV4IiLrxJI8LqVIC1clSphFrDVCOilSxxr1QI6nHtullsPEJHlHsWEhA1wngANUqg8co5s8WdCr1gL+bH77wyxxTWE1w1rwUpRKjeLQEjMsd/sOXET+EHR7SXgKiBQQzewPUIub5hzlRaS/BypHCh3rn3dS+qljhShun1berm3PZTIzXsJDGOjbWLSpF/CQ+vwbwRsNA2E/itMbcxS5 admin@172.28.25.136:8080
-jenkins@jenkins-virtual-machine:~/.ssh$ 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDSpN1XH8DURMitPWvG7NnDhlElYdPAVoWgd19SG4r7nkbN7epl90RDGiBXyteAfpPif6+z1Mm4Z4+6+VE9m/Wa4PatW/zY+/wzuKHbcANE1tHMAGICJA1pCZzA1ekrBn1w29NiFoib7UK71hBFTn7Rb824MOWCbFbta9NZynx/kStfux53W11l/fJ68rSr0YAmpdR/Ax+i946u74FNB3HGia1ywqNFxeC2BrBe/xGggARpMo58tu819VZbD4IJJKfBMtP22WYsjF22IbpAbqX5YukVtkxlWtnTLLl5OKaJh1uRYZDAr363uSqe9urGdf3efkj8MKBfsCaCb39ORZQd ruth.lennon@lyit.ie
+'
 
 *******************************************
 authenticate git account
