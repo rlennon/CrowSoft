@@ -28,8 +28,7 @@ Agent pid 2057
 jenkins@jenkins-virtual-machine:~/.ssh$ ssh-add id_rsa
 Identity added: id_rsa (id_rsa)
 jenkins@jenkins-virtual-machine:~/.ssh$ cat id_rsa.pub
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQ65agjmx/FlIPZvzIeIAnVcW56eJlvN5YbITUOt9Du0tcGYAqAqmnXwXw/3sn5BsEQpFp3PrD4hO8TI9/XhBfN2wGQtSbaSPM5IoGpLCobHWtpwDpDPl0FllY+Sqlgcl/P9DLMM+6L01h/H3C5jMhJpxFwqMSDpgKNaO85qUyl3VEtVDf9iqb2ocllSg0Z3wRAuumqiAxu+wHW1nz4zAHAUHhZnhP0nT3X6ERSRyJ62tal5MwPAEyoFL/NkFBHUZm2O7lbW4EttO7/4dhTVFSe0FmsVjqTFgoPQ0I9fQcm17eDuDInvZsdqm+KCkqYoUYMc63A8TqXj7EVQ/f7sNB admin@172.28.25.136
-
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/zbZzBy9PzOsn29fLwJUl5PDXplzWgkGBy8Drn8xLCBnw5H8sydii2uwD9+aP4GFegsMEtZG9ogHwr7fUqQWm0YvxCKriKNINgrBXCX9pAwyn3gMw80sSppYEcJsbWlDb42uflKbf80Spea2PfmgoIF9dnvFWauWjt1UNK3rzT6viq49HQ7jBexvA049wZKeVtPnq7LRPUWlQp4OgP+JjYKaOLsUaY7GmLEtmSBxcUbmKnqpOh8d7oAr+DkGblrFifN+zHvjcNRzPi1+r60pMg01ESzI4Z1ecAAIKgY8YOYGqoMhz5cT8dMIdvQBVhOl3oNC85mQjJBQLvNt9jHrd admin@172.28.25.136
 
 *******************************************
 authenticate git account
