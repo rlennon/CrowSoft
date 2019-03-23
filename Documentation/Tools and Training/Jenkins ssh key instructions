@@ -24,12 +24,12 @@ The key's randomart image is:
 |##X%             |
 +----[SHA256]-----+
 jenkins@jenkins-virtual-machine:~/.ssh$ eval "$(ssh-agent -s)"
-Agent pid 3111
+Agent pid 2057
 jenkins@jenkins-virtual-machine:~/.ssh$ ssh-add id_rsa
 Identity added: id_rsa (id_rsa)
 jenkins@jenkins-virtual-machine:~/.ssh$ cat id_rsa.pub
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDSpN1XH8DURMitPWvG7NnDhlElYdPAVoWgd19SG4r7nkbN7epl90RDGiBXyteAfpPif6+z1Mm4Z4+6+VE9m/Wa4PatW/zY+/wzuKHbcANE1tHMAGICJA1pCZzA1ekrBn1w29NiFoib7UK71hBFTn7Rb824MOWCbFbta9NZynx/kStfux53W11l/fJ68rSr0YAmpdR/Ax+i946u74FNB3HGia1ywqNFxeC2BrBe/xGggARpMo58tu819VZbD4IJJKfBMtP22WYsjF22IbpAbqX5YukVtkxlWtnTLLl5OKaJh1uRYZDAr363uSqe9urGdf3efkj8MKBfsCaCb39ORZQd ruth.lennon@lyit.ie
-'
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQ65agjmx/FlIPZvzIeIAnVcW56eJlvN5YbITUOt9Du0tcGYAqAqmnXwXw/3sn5BsEQpFp3PrD4hO8TI9/XhBfN2wGQtSbaSPM5IoGpLCobHWtpwDpDPl0FllY+Sqlgcl/P9DLMM+6L01h/H3C5jMhJpxFwqMSDpgKNaO85qUyl3VEtVDf9iqb2ocllSg0Z3wRAuumqiAxu+wHW1nz4zAHAUHhZnhP0nT3X6ERSRyJ62tal5MwPAEyoFL/NkFBHUZm2O7lbW4EttO7/4dhTVFSe0FmsVjqTFgoPQ0I9fQcm17eDuDInvZsdqm+KCkqYoUYMc63A8TqXj7EVQ/f7sNB admin@172.28.25.136
+
 
 *******************************************
 authenticate git account
