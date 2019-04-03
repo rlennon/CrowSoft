@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using crowsoftmvc.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Net;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace crowsoftmvc
 {
@@ -44,6 +46,10 @@ namespace crowsoftmvc
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Add(new ServiceDescriptor(typeof(CrowsoftContext), new CrowsoftContext(Configuration.GetConnectionString("DefaultConnection"))));
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.KnownProxies.Add(IPAddress.Parse("172.28.25.133"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +70,11 @@ namespace crowsoftmvc
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
 
             app.UseAuthentication();
 
