@@ -21,8 +21,8 @@ namespace crowsoftmvc
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseKestrel()
-		        .UseUrls("http://*:5123")
-		        .UseContentRoot(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location))
+		        //.UseUrls("http://*:5123")
+		        //.UseContentRoot(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location))
                 .UseStartup<Startup>();
     }
 }
