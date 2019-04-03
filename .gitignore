@@ -8,3 +8,5 @@ Projects/crowsoftmvc/bin/Debug/netcoreapp2.2/crowsoftmvc.Views.dll
 Projects/crowsoftmvc/bin/Debug/netcoreapp2.2/crowsoftmvc.Views.pdb
 Projects/crowsoftmvc/obj/Debug/netcoreapp2.2/crowsoftmvc.Views.dll
 Projects/crowsoftmvc/obj/Debug/netcoreapp2.2/crowsoftmvc.Views.pdb
+*.cache
+Projects/crowsoftmvc/obj/Debug/netcoreapp2.2/crowsoftmvc.assets.cache
