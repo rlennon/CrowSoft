@@ -4,3 +4,7 @@
 Projects/crowsoftmvc/bin/*
 Projects/crowsoftmvc/bin/Debug/netcoreapp2.2/*
 
+Projects/crowsoftmvc/bin/Debug/netcoreapp2.2/crowsoftmvc.Views.dll
+Projects/crowsoftmvc/bin/Debug/netcoreapp2.2/crowsoftmvc.Views.pdb
+Projects/crowsoftmvc/obj/Debug/netcoreapp2.2/crowsoftmvc.Views.dll
+Projects/crowsoftmvc/obj/Debug/netcoreapp2.2/crowsoftmvc.Views.pdb
