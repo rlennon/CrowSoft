@@ -45,7 +45,7 @@ namespace crowsoftmvc
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.Add(new ServiceDescriptor(typeof(CrowsoftContext), new CrowsoftContext(Configuration.GetConnectionString("DefaultConnection"))));
+            services.Add(new ServiceDescriptor(typeof(DummyContext), new DummyContext(Configuration.GetConnectionString("DefaultConnection"))));
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.KnownProxies.Add(IPAddress.Parse("172.28.25.133"));

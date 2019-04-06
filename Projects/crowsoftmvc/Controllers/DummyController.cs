@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using crowsoftmvc.Models;
 using Microsoft.AspNetCore.Mvc;
+using crowsoftmvc.Data;
 
 namespace crowsoftmvc.Controllers
 {
@@ -11,7 +12,7 @@ namespace crowsoftmvc.Controllers
     {
         public IActionResult Index()
         {
-            CrowsoftContext context = HttpContext.RequestServices.GetService(typeof(CrowsoftContext)) as CrowsoftContext;
+            DummyContext context = HttpContext.RequestServices.GetService(typeof(DummyContext)) as DummyContext;
             List<Dummy> list = context.GetAllDummys();
             return View(list);
         }
