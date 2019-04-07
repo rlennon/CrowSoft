@@ -18,4 +18,4 @@ F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\obj\Debug\netcoreapp2.2\crowsof
 F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\obj\Debug\netcoreapp2.2\crowsoft_unittests.csproj.CopyComplete
 F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\obj\Debug\netcoreapp2.2\crowsoft_unittests.dll
 F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\obj\Debug\netcoreapp2.2\crowsoft_unittests.pdb
-F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\bin\Debug\netcoreapp2.2\crowsoft_unittests.dll.config
+F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\bin\Debug\netcoreapp2.2\appconfig.json

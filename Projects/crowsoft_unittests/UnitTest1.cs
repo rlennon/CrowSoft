@@ -2,6 +2,8 @@ using NUnit.Framework;
 using System.Configuration;
 using System.Collections.Generic;
 using crowsoftmvc.Data;
+using Microsoft.Extensions.Configuration.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace Tests
 {
@@ -12,7 +14,11 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            connection_string = ConfigurationManager.AppSettings["ConnectionString"];
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appconfig.json")
+                .Build();
+            //connection_string = ConfigurationManager.AppSettings["ConnectionString"];
+            connection_string = config["CONNECTION_STRING"];
         }
 
         [Test]
