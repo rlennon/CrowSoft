@@ -19,7 +19,7 @@ namespace Tests
         public void Test_GetDummyList()
         {
             //DummyContext context = new DummyContext("server=172.28.25.133;port=3306;database=crowsoftdb;uid=dbadmin;password=csoftsql");
-            DummyContext context = new DummyContext(@connection_string);
+            DummyContext context = new DummyContext(connection_string);
 
             List<crowsoftmvc.Models.Dummy> myDummyList = context.GetAllDummys();
 
