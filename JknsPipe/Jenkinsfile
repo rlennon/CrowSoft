@@ -5,7 +5,7 @@ pipeline {
 	  	steps {
 		  	sh 'echo "*************************GitHub Pull*************************"'
 				script {
-				git branch: '*/CSoftDevBranch', poll: false, url: 'git@github.com:rlennon/CrowSoft.git'					
+				sh git branch: '*/CSoftDevBranch', poll: false, url: 'git@github.com:rlennon/CrowSoft.git'					
 				}
 			}	
 	  }
