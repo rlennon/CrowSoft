@@ -4,8 +4,7 @@ pipeline {
     stage('GitHub Pull') {
 	  	steps {
 		  	sh 'echo "*************************GitHub Pull*************************"'
-				script {
-				sh git branch: '*/CSoftDevBranch', poll: false, url: 'git@github.com:rlennon/CrowSoft.git'					
+				script {sh git branch: '*/CSoftDevBranch', poll: false, url: 'git@github.com:rlennon/CrowSoft.git'					
 				}
 			}	
 	  }
