@@ -13364,11 +13364,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\CrowSoft\\LYIT_ProjectManagement\\crowsoftmvc\\crowsoftmvc.csproj",
+      "projectUniqueName": "f:\\CrowSoft\\CrowSoft\\Projects\\crowsoftmvc\\crowsoftmvc.csproj",
       "projectName": "crowsoftmvc",
-      "projectPath": "F:\\CrowSoft\\LYIT_ProjectManagement\\crowsoftmvc\\crowsoftmvc.csproj",
+      "projectPath": "f:\\CrowSoft\\CrowSoft\\Projects\\crowsoftmvc\\crowsoftmvc.csproj",
       "packagesPath": "C:\\Users\\Charles\\.nuget\\packages\\",
-      "outputPath": "F:\\CrowSoft\\LYIT_ProjectManagement\\crowsoftmvc\\obj\\",
+      "outputPath": "f:\\CrowSoft\\CrowSoft\\Projects\\crowsoftmvc\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
