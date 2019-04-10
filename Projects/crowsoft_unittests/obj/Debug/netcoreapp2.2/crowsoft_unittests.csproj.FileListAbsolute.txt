@@ -1,6 +1,5 @@
 F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\bin\Debug\netcoreapp2.2\crowsoftmvc.Views.dll
 F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\bin\Debug\netcoreapp2.2\crowsoftmvc.Views.pdb
-F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\bin\Debug\netcoreapp2.2\app.db
 F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
 F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
 F:\CrowSoft\CrowSoft\Projects\crowsoft_unittests\bin\Debug\netcoreapp2.2\nunit.engine.netstandard.dll

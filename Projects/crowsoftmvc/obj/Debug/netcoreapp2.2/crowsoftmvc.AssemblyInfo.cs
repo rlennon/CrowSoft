@@ -11,7 +11,6 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-crowsoftmvc-6C4ED6C9-FABD-4DA4-BE5A-3F357559A2BF")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("crowsoftmvc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
