@@ -5,7 +5,7 @@ pipeline {
 	  	steps {
 		  	sh 'echo "*************************GitHub Pull*************************"'
 				script {
-					
+				git branch: '*/CSoftDevBranch', poll: false, url: 'git@github.com:rlennon/CrowSoft.git'					
 				}
 			}	
 	  }
@@ -16,7 +16,7 @@ pipeline {
 	  }
 				stage('Build/Zip Artifacts') {
 	  	steps {
-		  	sh 'echo "*************************Build/Tar Package*************************"'
+		  	sh 'echo "*************************Build/Zip Artifacts*************************"'
 			
 		  }	
 	  }
