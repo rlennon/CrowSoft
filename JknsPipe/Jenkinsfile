@@ -9,12 +9,12 @@ pipeline {
 				}
 			}	
 	  }
-  	stage('Sonar Testing') {
+  	stage('Selenium Testing') {
   		steps {
-			  sh 'echo "*************************Sonar Testing*************************"'
+			  sh 'echo "*************************Selenium Testing*************************"'
  		  }	
 	  }
-				stage('Build/Tar Package') {
+				stage('Build/Zip Artifacts') {
 	  	steps {
 		  	sh 'echo "*************************Build/Tar Package*************************"'
 			
