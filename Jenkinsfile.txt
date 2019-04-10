@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Build code here'
+                sh "go build -o application"
+                sh "zip application.zip application"
+                // Archive the build artifact for downloading via Jenkins project screen
+                archiveArtifacts artifacts: 'application.zip', fingerprint: true    
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Handling deploy logic here.'
+            }
+        }
+    }
+    post {
+        // This block always runs
+        always {
+            // You can cleanup key files, etc. here.
+            sh 'rm ./key.pem'
+        }
+    }
+}
