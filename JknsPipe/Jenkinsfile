@@ -7,20 +7,8 @@ pipeline {
 				}
 			}	
 	  }
-  	stage('Selenium Testing') {
-  		steps {
-			
- 		  }	
-	  }
-				stage('Build/Zip Artifacts') {
-	  	steps {
-		  
-			
-		  }	
-	  }
-  	stage('Artifactory Upload') {
-  		steps {
-		}	
-	  }
+
+
+
  }
 
