@@ -1,28 +1,26 @@
 pipeline {
   agent any
   stages {
-    stage('GitHub Pull') {
+    stage('Checkout code') {
 	  	steps {
-		  	sh 'echo "*************************GitHub Pull*************************"'
-				script {sh git branch: '*/CSoftDevBranch', poll: false, url: 'git@github.com:rlennon/CrowSoft.git'					
+		  	checkout scm				
 				}
 			}	
 	  }
   	stage('Selenium Testing') {
   		steps {
-			  sh 'echo "*************************Selenium Testing*************************"'
+			
  		  }	
 	  }
 				stage('Build/Zip Artifacts') {
 	  	steps {
-		  	sh 'echo "*************************Build/Zip Artifacts*************************"'
+		  
 			
 		  }	
 	  }
-  	stage('Artifactory Load') {
+  	stage('Artifactory Upload') {
   		steps {
-			  sh 'echo "*************************Artifactory Load*************************"'
- 		  }	
+		}	
 	  }
-  }
-}
+ }
+
