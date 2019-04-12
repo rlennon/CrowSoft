@@ -8,13 +8,13 @@ pipeline {
 			}	
     stage('Run NUnit Test') {
 	  	steps {
-		  					
+		  		echo 'Nunit test will go in here'			
 				}
 			}	
 		
     stage('Upload to Artifactory') {
 	  	steps {
-		  					
+		  		echo 'Artifactory will go in here'			
 				}
 			}	
 	 stage('Stopapp') {
