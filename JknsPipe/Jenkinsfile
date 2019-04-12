@@ -6,15 +6,26 @@ pipeline {
 		  	checkout scm				
 				}
 			}	
+    stage('Run NUnit Test') {
+	  	steps {
+		  					
+				}
+			}	
+		
+    stage('Upload to Artifactory') {
+	  	steps {
+		  					
+				}
+			}	
 	 stage('Stopapp') {
 	  	steps {
-		  	sh label: '', script: 'Cr0wadm!n | sudo -S pwd systemctl stop crowsoft-webapp.service'				
+		  	sh label: '', script: 'echo Cr0wadm!n | sudo -S systemctl stop crowsoft-webapp.service'				
 				}
 			}	
 	 
 	stage('Startapp') {
 	  	steps {
-		  	sh label: '', script: 'Cr0wadm!n | sudo -S pwd systemctl start crowsoft-webapp.service'				
+		  	sh label: '', script: 'echo Cr0wadm!n | sudo -S systemctl start crowsoft-webapp.service'				
 				}
 			}	
 	  }
