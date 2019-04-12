@@ -6,8 +6,18 @@ pipeline {
 		  	checkout scm				
 				}
 			}	
+	 stage('Stopapp') {
+	  	steps {
+		  	sh label: '', script: 'Cr0wadm!n | sudo -S pwd systemctl stop crowsoft-webapp.service'				
+				}
+			}	
 	  }
-
+	stage('Startapp') {
+	  	steps {
+		  	sh label: '', script: 'Cr0wadm!n | sudo -S pwd systemctl start crowsoft-webapp.service'				
+				}
+			}	
+	  }
 
 
  }
