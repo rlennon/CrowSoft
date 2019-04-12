@@ -19,13 +19,13 @@ pipeline {
 			}	
 	 stage('Stopapp') {
 	  	steps {
-		  	sh label: '', script: 'echo Cr0wadm!n | sudo -S systemctl stop crowsoft-webapp.service'				
+		  	sh label: '', script: 'echo lyit2019 | sudo -S systemctl stop crowsoft-webapp.service'				
 				}
 			}	
 	 
 	stage('Startapp') {
 	  	steps {
-		  	sh label: '', script: 'echo Cr0wadm!n | sudo -S systemctl start crowsoft-webapp.service'				
+		  	sh label: '', script: 'echo lyit2019 | sudo -S systemctl start crowsoft-webapp.service'				
 				}
 			}	
 	  }
