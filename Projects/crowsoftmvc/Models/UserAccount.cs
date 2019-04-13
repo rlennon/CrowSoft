@@ -22,11 +22,9 @@ namespace crowsoftmvc.Models
         [Required(ErrorMessage = "{0} is required.")]
         public string EmailAddress { get; set; }
 
-        [Display(Name = "Password (min=6, Max=10)")]
-        [StringLength(10, MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "{0} is required.")]
-        public string Password { get; set; }
+        [Display(Name = "Company Name")]
+        [StringLength(150)]
+        public string CompanyName { get; set; }
 
         [Display(Name = "First Name")]
         [StringLength(60)]
@@ -69,9 +67,7 @@ namespace crowsoftmvc.Models
         [StringLength(8)]
         public string EirCode { get; set; }
 
-        [Display(Name = "Country")]
-        [StringLength(150)]
-        public string CompanyName { get; set; }
+        public string AspNetUserID { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public string TypeUser { get; set; } = "Client";
