@@ -6,8 +6,29 @@ pipeline {
 		  	checkout scm				
 				}
 			}	
+    stage('Run NUnit Test') {
+	  	steps {
+		  		echo 'Nunit test will go in here'			
+				}
+			}	
+		
+    stage('Upload to Artifactory') {
+	  	steps {
+		  		echo 'Artifactory will go in here'			
+				}
+			}	
+	 stage('Stopapp') {
+	  	steps {
+		  	sh label: '', script: 'echo lyit2019 | sudo -S systemctl stop crowsoft-webapp.service'				
+				}
+			}	
+	 
+	stage('Startapp') {
+	  	steps {
+		  	sh label: '', script: 'echo lyit2019 | sudo -S systemctl start crowsoft-webapp.service'				
+				}
+			}	
 	  }
-
 
 
  }
