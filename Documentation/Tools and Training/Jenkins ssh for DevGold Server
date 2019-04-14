@@ -1,40 +1,14 @@
-Saved on the Jenkins server straight to GitHub via browser
+Steps taken to create a new ssh for the Dev server
+Please not that due to previous key being created to connect jenkins to github a new folder was created
+(Did not want to overwrite the key already in place)
+Folder location .ssh/devgldkey
+Also note that when being prompted on generation to confirm the path a different key name was given
+Suggested path/file name -->> /home/jenkins/.ssh/id_rsa
+Given new path/file name -->> /home/jenkins/.ssh/devgldkey/id_rsa_dev
 
 
 jenkins@jenkins-virtual-machine:~$ cd /var/lib/jenkins
-jenkins@jenkins-virtual-machine:/var/lib/jenkins$ sudo su -jenkins
-[sudo] password for jenkins: 
-su: invalid option -- 'j'
-Usage: su [options] [LOGIN]
-
-Options:
-  -c, --command COMMAND         pass COMMAND to the invoked shell
-  -h, --help                    display this help message and exit
-  -, -l, --login                make the shell a login shell
-  -m, -p,
-  --preserve-environment        do not reset environment variables, and
-                                keep the same shell
-  -s, --shell SHELL             use SHELL instead of the default in passwd
-
-jenkins@jenkins-virtual-machine:/var/lib/jenkins$ sudo su -jenkins
-su: invalid option -- 'j'
-Usage: su [options] [LOGIN]
-
-Options:
-  -c, --command COMMAND         pass COMMAND to the invoked shell
-  -h, --help                    display this help message and exit
-  -, -l, --login                make the shell a login shell
-  -m, -p,
-  --preserve-environment        do not reset environment variables, and
-                                keep the same shell
-  -s, --shell SHELL             use SHELL instead of the default in passwd
-
 jenkins@jenkins-virtual-machine:/var/lib/jenkins$ sudo su - jenkins
-jenkins@jenkins-virtual-machine:~$ mkdir ./ssh/devgldkey
-mkdir: cannot create directory ‘./ssh/devgldkey’: No such file or directory
-jenkins@jenkins-virtual-machine:~$ mkdir ./.ssh/devgldkey
-mkdir: cannot create directory ‘./.ssh/devgldkey’: File exists
-jenkins@jenkins-virtual-machine:~$ rm -r ./.ssh/devgldkey
 jenkins@jenkins-virtual-machine:~$ mkdir ./.ssh/devgldkey
 jenkins@jenkins-virtual-machine:~$ cd ./.ssh/devgldkey
 jenkins@jenkins-virtual-machine:~/.ssh/devgldkey$ ssh-keygen -t rsa -C "devadmin@172.28.25.133"
