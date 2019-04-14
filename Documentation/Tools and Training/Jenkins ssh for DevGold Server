@@ -1,34 +1,79 @@
 Saved on the Jenkins server straight to GitHub via browser
 
 
-jenkins@jenkins-virtual-machine:~$ cd ./.ssh
-jenkins@jenkins-virtual-machine:~/.ssh$ ls
-id_rsa  id_rsa.pub  known_hosts
-jenkins@jenkins-virtual-machine:~/.ssh$ cd /var/lib/jenkins
-jenkins@jenkins-virtual-machine:/var/lib/jenkins$ sudo su - Jenkins
+jenkins@jenkins-virtual-machine:~$ cd /var/lib/jenkins
+jenkins@jenkins-virtual-machine:/var/lib/jenkins$ sudo su -jenkins
 [sudo] password for jenkins: 
-No passwd entry for user 'Jenkins'
-jenkins@jenkins-virtual-machine:/var/lib/jenkins$ mkdir ./.ssh/DevGldKey
-jenkins@jenkins-virtual-machine:/var/lib/jenkins$ cd ./.ssh/DevGldKey
-jenkins@jenkins-virtual-machine:/var/lib/jenkins/.ssh/DevGldKey$ ssh-keygen -t rsa -C "devadmin@172.28.25.133"
+su: invalid option -- 'j'
+Usage: su [options] [LOGIN]
+
+Options:
+  -c, --command COMMAND         pass COMMAND to the invoked shell
+  -h, --help                    display this help message and exit
+  -, -l, --login                make the shell a login shell
+  -m, -p,
+  --preserve-environment        do not reset environment variables, and
+                                keep the same shell
+  -s, --shell SHELL             use SHELL instead of the default in passwd
+
+jenkins@jenkins-virtual-machine:/var/lib/jenkins$ sudo su -jenkins
+su: invalid option -- 'j'
+Usage: su [options] [LOGIN]
+
+Options:
+  -c, --command COMMAND         pass COMMAND to the invoked shell
+  -h, --help                    display this help message and exit
+  -, -l, --login                make the shell a login shell
+  -m, -p,
+  --preserve-environment        do not reset environment variables, and
+                                keep the same shell
+  -s, --shell SHELL             use SHELL instead of the default in passwd
+
+jenkins@jenkins-virtual-machine:/var/lib/jenkins$ sudo su - jenkins
+jenkins@jenkins-virtual-machine:~$ mkdir ./ssh/devgldkey
+mkdir: cannot create directory ‘./ssh/devgldkey’: No such file or directory
+jenkins@jenkins-virtual-machine:~$ mkdir ./.ssh/devgldkey
+mkdir: cannot create directory ‘./.ssh/devgldkey’: File exists
+jenkins@jenkins-virtual-machine:~$ rm -r ./.ssh/devgldkey
+jenkins@jenkins-virtual-machine:~$ mkdir ./.ssh/devgldkey
+jenkins@jenkins-virtual-machine:~$ cd ./.ssh/devgldkey
+jenkins@jenkins-virtual-machine:~/.ssh/devgldkey$ ssh-keygen -t rsa -C "devadmin@172.28.25.133"
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/jenkins/.ssh/id_rsa): /home/jenkins/.ssh/DevGldKey
+Enter file in which to save the key (/home/jenkins/.ssh/id_rsa): /home/jenkins/.ssh/devgldkey/id_rsa_dev
 Enter passphrase (empty for no passphrase): 
 Enter same passphrase again: 
-Your identification has been saved in /home/jenkins/.ssh/DevGldKey.
-Your public key has been saved in /home/jenkins/.ssh/DevGldKey.pub.
+Your identification has been saved in /home/jenkins/.ssh/devgldkey/id_rsa_dev.
+Your public key has been saved in /home/jenkins/.ssh/devgldkey/id_rsa_dev.pub.
 The key fingerprint is:
-SHA256:N+yufohJGGrbmOiczQvOIZhLZ/b7spiuW6lAnzUZc0I devadmin@172.28.25.133
+SHA256:dgezjfww+nlL1Cymgqqm9WSN1GLgUw2VJu3ODnl5vDw devadmin@172.28.25.133
 The key's randomart image is:
 +---[RSA 2048]----+
-|     E           |
-|    .            |
-|     + .         |
-|    . *  .       |
-| . . *  S +      |
-|o.+ = o  o .     |
-|=* & . o ..      |
-|O./ =.o ...      |
-|oX+B.+=ooo.      |
+|    .o..         |
+|    .o+          |
+|  . .+.   o      |
+| . o ..  . * o   |
+|  o ++.oS B * o  |
+|   +o+=ooo O .   |
+|  . ++ooo.. o    |
+| ..+ .. Eo o.    |
+|.o..o    .o...   |
 +----[SHA256]-----+
-jenkins@jenkins-virtual-machine:/var/lib/jenkins/.ssh/DevGldKey$ 
+jenkins@jenkins-virtual-machine:~/.ssh/devgldkey$ eval "$(ssh-agent -s)"
+Agent pid 22886
+jenkins@jenkins-virtual-machine:~/.ssh/devgldkey$ ssh-add id_rsa_dev
+Identity added: id_rsa_dev (id_rsa_dev)
+jenkins@jenkins-virtual-machine:~/.ssh/devgldkey$ cat id_rsa_dev.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYmZxg34Q/NMDQ22wU70InhBzmwI4AuRWAFlpP32Oe+3ePtDUXXhou1vf1L85PgDA+q3zscwo/vRgMQZgtvLyMMU0RnKvBYZeqL9KgHXkCeMiisnbXpufr9R1qK6jMisTM+3TzzArw/vjLl9TaTssYi1gS6byhOI6o5REqUo47W5o/JkUeIpSg7WvFt0Fu74U6PlAhEIzsVvJui9tAaZXxsHMrMmEZ3hZv5z8zY+6AmTQWEqgJVuEUq5QoDeIJR711T+hIAy6qShDRsVhyp0cOOTCjwMP/KSUFEQkJ2T//w8dm4MDDla9vJXQv2hnNOq8CkreX9Cc4VjJBEKjNWwFz devadmin@172.28.25.133
+jenkins@jenkins-virtual-machine:~/.ssh/devgldkey$ ssh -T devadmin@172.28.25.133
+devadmin@172.28.25.133's password: 
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.15.0-47-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+19 packages can be updated.
+0 updates are security updates.
+
+New release '18.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
