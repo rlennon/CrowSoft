@@ -1,0 +1,34 @@
+Saved on the Jenkins server straight to GitHub via browser
+
+
+jenkins@jenkins-virtual-machine:~$ cd ./.ssh
+jenkins@jenkins-virtual-machine:~/.ssh$ ls
+id_rsa  id_rsa.pub  known_hosts
+jenkins@jenkins-virtual-machine:~/.ssh$ cd /var/lib/jenkins
+jenkins@jenkins-virtual-machine:/var/lib/jenkins$ sudo su - Jenkins
+[sudo] password for jenkins: 
+No passwd entry for user 'Jenkins'
+jenkins@jenkins-virtual-machine:/var/lib/jenkins$ mkdir ./.ssh/DevGldKey
+jenkins@jenkins-virtual-machine:/var/lib/jenkins$ cd ./.ssh/DevGldKey
+jenkins@jenkins-virtual-machine:/var/lib/jenkins/.ssh/DevGldKey$ ssh-keygen -t rsa -C "devadmin@172.28.25.133"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/jenkins/.ssh/id_rsa): /home/jenkins/.ssh/DevGldKey
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/jenkins/.ssh/DevGldKey.
+Your public key has been saved in /home/jenkins/.ssh/DevGldKey.pub.
+The key fingerprint is:
+SHA256:N+yufohJGGrbmOiczQvOIZhLZ/b7spiuW6lAnzUZc0I devadmin@172.28.25.133
+The key's randomart image is:
++---[RSA 2048]----+
+|     E           |
+|    .            |
+|     + .         |
+|    . *  .       |
+| . . *  S +      |
+|o.+ = o  o .     |
+|=* & . o ..      |
+|O./ =.o ...      |
+|oX+B.+=ooo.      |
++----[SHA256]-----+
+jenkins@jenkins-virtual-machine:/var/lib/jenkins/.ssh/DevGldKey$ 
