@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -32,5 +32,6 @@ namespace crowsoftmvc.Data
         }
 
         public DbSet<crowsoftmvc.Models.UserAccount> UserAccount { get; set; }
+        public DbSet<crowsoftmvc.Models.Dummy> Dummy { get; set; }
     }
 }

@@ -57,12 +57,10 @@ namespace crowsoftmvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idUserAccount,EmailAddress,Password,FirstName,LastName,TelephoneNo,AddressLine,County,Country,EirCode,CompanyName,TypeUser,DateCreated")] UserAccount userAccount)
+        public async Task<IActionResult> Create([Bind("idUserAccount,EmailAddress,CompanyName,FirstName,LastName,TelephoneNo,AddressLine,County,Country,EirCode,TypeUser,DateCreated")] UserAccount userAccount)
         {
             if (ModelState.IsValid)
             {
-                // Calling the Security Helper Class to encode the string to bytearray before saving to database
-                userAccount.Password = Helpers.SecurityHelper.ToByteArrayToString(userAccount.Password).ToString();
                 _context.Add(userAccount);
                 await _context.SaveChangesAsync();
                 return Redirect("/Home");
@@ -113,7 +111,7 @@ namespace crowsoftmvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idUserAccount,EmailAddress,Password,FirstName,LastName,TelephoneNo,AddressLine,County,Country,EirCode,CompanyName,TypeUser,DateCreated")] UserAccount userAccount)
+        public async Task<IActionResult> Edit(int id, [Bind("idUserAccount,EmailAddress,CompanyName,FirstName,LastName,TelephoneNo,AddressLine,County,Country,EirCode,TypeUser,DateCreated")] UserAccount userAccount)
         {
             if (id != userAccount.idUserAccount)
             {
