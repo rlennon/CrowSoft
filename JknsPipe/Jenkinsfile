@@ -19,7 +19,8 @@ pipeline {
 			}	
 	 stage('Stop app') {
 	  	steps {
-				sh label: '', script: 'ssh devadmin@172.28.25.133:22 sudo  systemctl stop crowsoft-webapp.service\''
+				sh 'ssh devadmin@172.28.25.133:22'
+				sh 'sudo  systemctl stop crowsoft-webapp.service'
   				
 				}
 			}	
