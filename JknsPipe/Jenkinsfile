@@ -29,7 +29,8 @@ pipeline {
 	 
 	stage('Startapp') {
 	  	steps {
-		  	sh label: '', script: 'sudo systemctl start crowsoft-webapp.service'				
+		  	sshagent(['dev']) {
+				sh label: '', script: 'pwd' 				
 				}
 			}	
 	  }
