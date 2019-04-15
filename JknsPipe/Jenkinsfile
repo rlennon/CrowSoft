@@ -12,16 +12,16 @@ pipeline {
 				}
 			}	
 		
-    stage('Upload to Artifactory') {
+    stage('Test ssh publisher ') {
 	  	steps {
-		  		echo 'Artifactory will go in here'			
+		  		sshPublisher(publishers: [sshPublisherDesc(configName: 'PublishOverSSHDevConn133', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/devadmin/TEST', remoteDirectorySDF: false, removePrefix: 'Projects/crowsoft_unittests/', sourceFiles: 'Projects/crowsoft_unittests/appconfig.json')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])			
 				}
 			}	
 	 stage('Stop app') {
 	  	steps {
 				sshagent(['dev']) {
-					sh label: '', script: 'ssh devadmin@172.28.25.133 /bin/bash'
-					sh label: '', script: 'sudo  systemctl stop crowsoft-webapp.service'
+					echo is this working without the ssh step inside 
+					
 					}
 		  				
 				}
