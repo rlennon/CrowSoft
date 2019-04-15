@@ -20,7 +20,7 @@ pipeline {
 	 stage('Stop app') {
 	  	steps {
 				sshagent(['dev']) {
-					sh label: '', script: 'ssh devadmin@172.283.25.133'
+					sh label: '', script: 'ssh devadmin@172.28.25.133'
 					sh label: '', script: 'sudo  systemctl stop crowsoft-webapp.service'
 					}
 		  				
