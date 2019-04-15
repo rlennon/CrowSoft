@@ -20,7 +20,7 @@ pipeline {
 	 stage('Stop app') {
 	  	steps {
 				sshagent(['dev']) {
-				sh label: '', echo is this working without the ssh step inside' 
+				sh label: '', script: 'echo is this working without the ssh step inside' 
 					
 					}
 		  				
