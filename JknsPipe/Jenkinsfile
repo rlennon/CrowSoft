@@ -15,7 +15,7 @@ pipeline {
     stage('Test ssh publisher ') {
 	  	steps {
 		  		sshPublisher(publishers: [sshPublisherDesc(configName: 'PublishOverSSHDevConn133', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/devadmin/TEST', remoteDirectorySDF: false, removePrefix: 'Projects/crowsoft_unittests/', sourceFiles: 'Projects/crowsoft_unittests/appconfig.json')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])			
-				execCommand: "sudo systemctl start crowsoft-webapp.service"
+				sshPublisher '', execCommand: "sudo systemctl start crowsoft-webapp.service"
 				}
 			}	
 	 stage('Stop app') {
