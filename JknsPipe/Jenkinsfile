@@ -1,13 +1,4 @@
 pipeline {
-
-def remote = [:]
-    remote.name = 'devadmin'
-    remote.host = 'test.domain.com'
-    remote.user = 'devadmin'
-    remote.password = 'Cr0wadm!n'
-    remote.allowAnyHosts = true
-
-
   agent any
   stages {
     stage('Checkout code') {
