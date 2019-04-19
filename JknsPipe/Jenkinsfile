@@ -6,9 +6,25 @@ pipeline {
 		  	checkout scm				
 				}
 			}	
+	stage ('Build MVC')
+		step {
+			 cd /Projects/crowsoftmvc
+			 pwd
+			 dotnet build
+			}
+		}
+		
+	Stage ('Build Unit Test') {
+		step(
+			cd /Projects/crowsoft_unittests
+			pwd
+			dotnet test
+			)
+		)
     stage('Run NUnit Test') {
 	  	steps {
-		  		echo 'Nunit test will go in here'			
+		  		echo 'Nunit test will go in here'	
+					cd /
 				}
 			}	
 		
