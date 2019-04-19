@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using crowsoftmvc.Areas.Identity.Data
-@inject SignInManager<crowsoftmvcUser> SignInManager
-@inject UserManager<crowsoftmvcUser> UserManager
+@inject SignInManager<CrowsoftUser> SignInManager
+@inject UserManager<CrowsoftUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

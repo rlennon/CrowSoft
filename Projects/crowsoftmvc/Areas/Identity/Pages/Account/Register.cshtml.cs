@@ -24,10 +24,12 @@ namespace crowsoftmvc.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<crowsoftmvcUser> _signInManager;
-        private readonly UserManager<crowsoftmvcUser> _userManager;
+        private readonly SignInManager<CrowsoftUser> _signInManager;
+        private readonly UserManager<CrowsoftUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private string _userRole;
+
 
         // Manually added for controller usage
         private readonly ApplicationDbContext _context;
@@ -37,8 +39,8 @@ namespace crowsoftmvc.Areas.Identity.Pages.Account
         public UserAccount userAccount { get; set; }
 
         public RegisterModel(
-            UserManager<crowsoftmvcUser> userManager,
-            SignInManager<crowsoftmvcUser> signInManager,
+            UserManager<CrowsoftUser> userManager,
+            SignInManager<CrowsoftUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender, ApplicationDbContext context)
         {
@@ -49,6 +51,7 @@ namespace crowsoftmvc.Areas.Identity.Pages.Account
             _context = context;
             userAccount = new UserAccount();
             userAccount.DateCreated = DateTime.Now;
+            _userRole = "Client";
         }
 
         
@@ -91,7 +94,7 @@ namespace crowsoftmvc.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {   
                 
-                var user = new crowsoftmvcUser { UserName = Input.Email, Email = Input.Email, PhoneNumber = userAccount.TelephoneNo };
+                var user = new CrowsoftUser { UserName = Input.Email, Email = Input.Email, PhoneNumber = userAccount.TelephoneNo };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -105,15 +108,19 @@ namespace crowsoftmvc.Areas.Identity.Pages.Account
                     userAccount.AspNetUserID = user.Id;
                     var addUser = await userAccountsController.Create(userAccount);
                     
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { userId = user.Id, code = code },
-                        protocol: Request.Scheme);
+                    var roleresult = await _userManager.AddToRoleAsync(user, _userRole);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    // The following code is commented out - not in use for this project
+                    //
+                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    //var callbackUrl = Url.Page(
+                    //    "/Account/ConfirmEmail",
+                    //    pageHandler: null,
+                    //    values: new { userId = user.Id, code = code },
+                    //    protocol: Request.Scheme);
+                    //
+                    //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace crowsoftmvc.Models
 {
-    public class crowsoftmvcContext : IdentityDbContext<crowsoftmvcUser>
+    public class crowsoftmvcContext : IdentityDbContext<CrowsoftUser>
     {
         public crowsoftmvcContext(DbContextOptions<crowsoftmvcContext> options)
             : base(options)

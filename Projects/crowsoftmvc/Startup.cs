@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Net;
 using crowsoftmvc.Areas.Identity.Data;
 using crowsoftmvc.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace crowsoftmvc
 {
+    /// <summary>
+    /// Last Updated by: Charles Aylward
+    /// This is the startup class that adds configuration services and security to the ASP.NET MVC application 
+    /// </summary>
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -39,10 +39,41 @@ namespace crowsoftmvc
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<crowsoftmvcUser>()
+
+            // This is to add the Identity components to the application,  AddRoles adds the role components
+            services.AddDefaultIdentity<CrowsoftUser>()
+                    .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddMvc(obj =>
+               {
+                   // This code adds Policy components to the application, to be able to the Authorize users against specific policies
+                   var policy = new AuthorizationPolicyBuilder()
+                      .RequireAuthenticatedUser()
+                      .Build();
+               }
+                ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            /// <summary>
+            /// Policies were added to control who can access the controllers
+            /// 1. RequireAdminOnly = User with Admin Roles Only
+            /// 2. AllUsers = All user roles, Admin, Client and User
+            /// 3. RequireUserandAdminOnly = CrowSoft Users only, Admin and User
+            /// 
+            /// Note the following code require on the top of the controller.             
+            /// E.g. [Authorize(Policy = "RequireAdminOnly")]
+            ///      public class YourController : Controller
+            /// </summary>
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdminOnly", policy =>
+                       policy.RequireRole("Admin"));
+                options.AddPolicy("AllUsers", policy =>
+                       policy.RequireRole("Admin", "Client", "User"));
+                options.AddPolicy("RequireUserandAdminOnly", policy =>
+                        policy.RequireRole("Admin", "User"));
+            });
 
             services.Configure<ForwardedHeadersOptions>(options =>
             {
