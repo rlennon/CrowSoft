@@ -11770,11 +11770,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\CrowSoft\\CrowSoft\\Projects\\crowsoft_unittests\\crowsoft_unittests.csproj",
+      "projectUniqueName": "f:\\CrowSoft\\CrowSoft\\Projects\\crowsoft_unittests\\crowsoft_unittests.csproj",
       "projectName": "crowsoft_unittests",
-      "projectPath": "F:\\CrowSoft\\CrowSoft\\Projects\\crowsoft_unittests\\crowsoft_unittests.csproj",
+      "projectPath": "f:\\CrowSoft\\CrowSoft\\Projects\\crowsoft_unittests\\crowsoft_unittests.csproj",
       "packagesPath": "C:\\Users\\Charles\\.nuget\\packages\\",
-      "outputPath": "F:\\CrowSoft\\CrowSoft\\Projects\\crowsoft_unittests\\obj\\",
+      "outputPath": "f:\\CrowSoft\\CrowSoft\\Projects\\crowsoft_unittests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -11793,8 +11793,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "F:\\CrowSoft\\CrowSoft\\Projects\\crowsoftmvc\\crowsoftmvc.csproj": {
-              "projectPath": "F:\\CrowSoft\\CrowSoft\\Projects\\crowsoftmvc\\crowsoftmvc.csproj"
+            "f:\\CrowSoft\\CrowSoft\\Projects\\crowsoftmvc\\crowsoftmvc.csproj": {
+              "projectPath": "f:\\CrowSoft\\CrowSoft\\Projects\\crowsoftmvc\\crowsoftmvc.csproj"
             }
           }
         }
