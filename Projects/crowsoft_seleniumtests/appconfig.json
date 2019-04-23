@@ -1,5 +1,5 @@
 {
   "CONNECTION_STRING": "server=172.28.25.133;port=3306;database=crowsoftdb;uid=dbadmin;password=csoftsql",
   "WEB_URL": "http://172.28.25.133",
-  "CHROME_DRIVER_PATH": "F:\\CrowSoft\\CrowSoft\\Projects\\crowsoft_seleniumtests\\ChromeDriver\\"
+  "CHROME_DRIVER_PATH": " /var/lib/jenkins/workspace/build-mvc-unit-selenium/Projects/crowsoft_seleniumtests/ChromeDriver/"
 }
