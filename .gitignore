@@ -1,6 +1,8 @@
 
 *.dll
 *.pdb
+bin/
+obj/
 Projects/crowsoftmvc/bin/*
 Projects/crowsoftmvc/bin/Debug/netcoreapp2.2/*
 
