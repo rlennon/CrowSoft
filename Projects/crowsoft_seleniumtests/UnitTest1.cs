@@ -17,7 +17,7 @@ namespace Tests
             var config = new ConfigurationBuilder()
                 .AddJsonFile("appconfig.json")
                 .Build();
-
+            
             webapp_url = config["WEB_URL"];
             chrome_path = config["CHROME_DRIVER_PATH"];
         }
@@ -29,7 +29,11 @@ namespace Tests
             try
             {
                 // Instatiate web driver for Selenium and use the Chrome Drive
-                IWebDriver driver = new ChromeDriver(chrome_path);
+                //ChromerDriver driver = new ChromeDriver(chrome_path);
+                ChromeOptions options = new ChromeOptions();
+                options.AddArgument("--headless");
+                IWebDriver driver = new ChromeDriver(chrome_path, options);
+                
                 // Navigate to the CrowSoft Dev server. Note the webapp_url are in the appconfig.json file
                 driver.Navigate().GoToUrl(webapp_url);
                 //Console.WriteLine("Opened web application successfully");
