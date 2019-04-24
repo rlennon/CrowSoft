@@ -32,10 +32,10 @@ namespace Tests
                 IWebDriver driver = new ChromeDriver(chrome_path);
                 // Navigate to the CrowSoft Dev server. Note the webapp_url are in the appconfig.json file
                 driver.Navigate().GoToUrl(webapp_url);
-                Console.WriteLine("Opened web application successfully");
+                //Console.WriteLine("Opened web application successfully");
                 // Test to click on the Register button
                 driver.FindElement(By.Id("register")).Click();
-                Console.WriteLine("Navigate to the Register page successfully");
+                //Console.WriteLine("Navigate to the Register page successfully");
             }
             catch(Exception ex)
             {
