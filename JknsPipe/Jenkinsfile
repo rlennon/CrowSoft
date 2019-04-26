@@ -15,7 +15,7 @@ pipeline {
 		
 	Stage ('Build Unit Test') {
 		step(
-			/Projects/crowsoft_unittests\bin\nunit-console.exe /xml=nunit-result.xml
+			//Projects/crowsoft_unittests\bin\nunit-console.exe /xml=nunit-result.xml
 			//cd /Projects/crowsoft_unittests
 			//dotnet test
 			)
