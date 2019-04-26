@@ -18,7 +18,7 @@ pipeline {
 	stage ('Build Unit Test') {
 		steps {
 			echo '>>>>>>  Unit Test <<<<<<<<<<<<<<'
-			Projects/crowsoft_unittests/bin/nunit-console.exe /xml=nunit-result.xml
+			Projects/crowsoft_unittests/bin\nunit-console.exe \xml=nunit-result.xml
 			cd /Projects/crowsoft_unittests
 			dotnet test
 			}
