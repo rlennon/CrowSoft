@@ -8,23 +8,23 @@ pipeline {
 				}
 			}	
 	stage ('Build MVC'){
-		step {
+		steps {
 			echo '>>>>>> MSBuild <<<<<<<<<<<<<<'
-			cd /Projects/crowsoftmvc
-			dotnet build
+			sh cd /Projects/crowsoftmvc
+			sh dotnet build
 			}
 		}
 		
 	stage ('Build Unit Test') {
-		step {
+		steps {
 			echo '>>>>>>  Unit Test <<<<<<<<<<<<<<'
-			cd /Projects/crowsoft_unittests
-			dotnet test
+			sh cd /Projects/crowsoft_unittests
+			sh dotnet test
 			}
 		}
 		
     stage ('Run Selenium Test') {
-	  	step {
+	  	steps {
 		  	echo '>>>>>>Selenium Test<<<<<<<<<<<<<<'	
 			}
 		}	
