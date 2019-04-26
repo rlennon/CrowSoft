@@ -26,28 +26,25 @@ pipeline {
 		
     stage('Run Selenium Test') {
 	  	steps {
-		  		echo 'Selenium test will go in here'	
-				
-				}
-			}	
+		  	echo 'Selenium test will go in here'	
+			}
+		}	
 		
 	 stage('Stop app') {
 	  	steps {	
-				echo '>>>>>>Stopping the WebApp <<<<<<<<'
-				ssh label: '', script: '''ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '''
-
-					}
- 				}
+			echo '>>>>>>Stopping the WebApp <<<<<<<<'
+			ssh label: '', script: '''ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '''
+			}
+ 		}
 				
 	 
 	stage('Startapp') {
 	  	steps {
-				echo '>>>>>>Starting the WebApp <<<<<<<<'
-		  		sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"' 				
-				}
-
+			echo '>>>>>>Starting the WebApp <<<<<<<<'
+		  	sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"' 				
 			}
 		}
+	}
 }
 
 
