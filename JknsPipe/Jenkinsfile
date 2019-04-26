@@ -9,22 +9,21 @@ pipeline {
 	stage ('Build MVC')
 		step {
 			 cd /Projects/crowsoftmvc
-			 pwd
 			 dotnet build
 			}
 		}
 		
 	Stage ('Build Unit Test') {
 		step(
-			cd /Projects/crowsoft_unittests
-			pwd
-			dotnet test
+			/Projects/crowsoft_unittests\bin\nunit-console.exe /xml=nunit-result.xml
+			//cd /Projects/crowsoft_unittests
+			//dotnet test
 			)
 		)
     stage('Run NUnit Test') {
 	  	steps {
-		  		echo 'Nunit test will go in here'	
-					cd /
+		  		//echo 'Nunit test will go in here'	
+					//cd /
 				}
 			}	
 		
@@ -37,7 +36,7 @@ pipeline {
 	 stage('Stop app') {
 	  	steps {
 				sshagent(['dev']) {
-				sh label: '', script: 'echo is this working without the ssh step inside' 
+				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"' 
 				//sh label: '', script: 'ssh devadmin@172.28.25.133 /bin/bash'
 				//ssh label: '', script: '/bin/bash'
 				//sh label: '', script: 'sudo systemctl start crowsoft-webapp.service'
