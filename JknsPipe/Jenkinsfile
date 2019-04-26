@@ -10,17 +10,16 @@ pipeline {
 	stage ('Build MVC'){
 		steps {
 			echo '>>>>>> MSBuild <<<<<<<<<<<<<<'
-			 sh label: '', script: 'cd /Projects/crowsoftmvc'
-			 sh label: '', script: 'dotnet build'
+			 cd /Projects/crowsoftmvc
+			 dotnet build
 			}
 		}
 		
 	stage ('Build Unit Test') {
 		steps {
 			echo '>>>>>>  Unit Test <<<<<<<<<<<<<<'
-			//Projects/crowsoft_unittests/bin\nunit-console.exe \xml=nunit-result.xml
-			sh label: '', script: 'cd /Projects/crowsoft_unittests'
-			sh label: '', script: 'dotnet test'
+			cd /Projects/crowsoft_unittests
+			dotnet test
 			}
 		}
 		
