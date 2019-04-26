@@ -7,14 +7,13 @@ pipeline {
 		  	checkout scm				
 				}
 			}	
-	stage ('Build MVC')
-			
+	stage ('Build MVC'){
 		step {
 			 echo 'This step changes to the MVC in the jenkins workspace and runs the MSBuild.'
 			 cd /Projects/crowsoftmvc
 			 dotnet build
 			}
-		
+		}
 		
 	stage ('Build Unit Test') {
 		step{
@@ -39,16 +38,18 @@ pipeline {
 
 					}
  				}
-			}	
+				
 	 
 	stage('Startapp') {
 	  	steps {
 				echo '>>>>>>Starting the WebApp <<<<<<<<'
 		  		sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"' 				
 				}
-			}	
-	  }
 
-	}
- }
+			}
+		}
+}
+
+
+
 
