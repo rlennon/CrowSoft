@@ -11,7 +11,7 @@ pipeline {
 			 cd /Projects/crowsoftmvc
 			 dotnet build
 			}
-		}
+		
 		
 	Stage ('Build Unit Test') {
 		step(
@@ -19,7 +19,8 @@ pipeline {
 			//cd /Projects/crowsoft_unittests
 			//dotnet test
 			)
-		)
+		}
+		
     stage('Run NUnit Test') {
 	  	steps {
 		  		//echo 'Nunit test will go in here'	
