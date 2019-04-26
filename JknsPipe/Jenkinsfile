@@ -9,20 +9,20 @@ pipeline {
 			}	
 	stage ('Build MVC'){
 		steps {
-			 cd /Projects/crowsoftmvc
-			 dotnet build
+			 //cd /Projects/crowsoftmvc
+			 //dotnet build
 			}
 		}
 		
 	stage ('Build Unit Test') {
-		steps{
+		steps {
 			//Projects/crowsoft_unittests\bin\nunit-console.exe /xml=nunit-result.xml
-			cd /Projects/crowsoft_unittests
-			dotnet test
+			//cd /Projects/crowsoft_unittests
+			//dotnet test
 			}
 		}
 		
-    stage('Run Selenium Test') {
+    stage ('Run Selenium Test') {
 	  	steps {
 		  	echo 'Selenium test will go in here'	
 			}
