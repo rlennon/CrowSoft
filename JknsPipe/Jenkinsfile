@@ -26,7 +26,7 @@ pipeline {
 		
     stage ('Run Selenium Test') {
 	  	steps {
-		  	echo 'echo '>>>>>>Selenium Test<<<<<<<<<<<<<<'	
+		  	echo '>>>>>>Selenium Test<<<<<<<<<<<<<<'	
 			}
 		}	
 		
