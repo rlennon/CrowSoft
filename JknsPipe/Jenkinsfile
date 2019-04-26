@@ -8,8 +8,9 @@ pipeline {
 				}
 			}	
 	stage ('Build MVC')
-			echo 'This step changes to the MVC in the jenkins workspace and runs the MSBuild.'
+			
 		step {
+			 echo 'This step changes to the MVC in the jenkins workspace and runs the MSBuild.'
 			 cd /Projects/crowsoftmvc
 			 dotnet build
 			}
@@ -17,42 +18,33 @@ pipeline {
 		
 	stage ('Build Unit Test') {
 		step{
-			echo 'This step moves '
-			//Projects/crowsoft_unittests\bin\nunit-console.exe /xml=nunit-result.xml
-			//cd /Projects/crowsoft_unittests
-			//dotnet test
+			sh echo "This step runs init tests "
+			Projects/crowsoft_unittests\bin\nunit-console.exe /xml=nunit-result.xml
+			cd /Projects/crowsoft_unittests
+			dotnet test
 			}
 		}
 		
-    stage('Run NUnit Test') {
+    stage('Run Selenium Test') {
 	  	steps {
-		  		//echo 'Nunit test will go in here'	
-					//cd /
+		  		echo 'Selenium test will go in here'	
+				
 				}
 			}	
 		
-    stage('Test ssh publisher ') {
-	  	steps {
-		  		sshPublisher(publishers: [sshPublisherDesc(configName: 'PublishOverSSHDevConn133', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/devadmin/TEST', remoteDirectorySDF: false, removePrefix: 'Projects/crowsoft_unittests/', sourceFiles: 'Projects/crowsoft_unittests/appconfig.json')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])			
-				//sshPublisher '', execCommand: "sudo systemctl start crowsoft-webapp.service"
-				}
-			}	
 	 stage('Stop app') {
-	  	steps {
-				sshagent(['dev']) {
-				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service"' 
-				//sh label: '', script: 'ssh devadmin@172.28.25.133 /bin/bash'
-				//ssh label: '', script: '/bin/bash'
-				//sh label: '', script: 'sudo systemctl start crowsoft-webapp.service'
-				//testing webhook with a commit -- second go
+	  	steps {	
+				echo '>>>>>>Stopping the WebApp <<<<<<<<'
+				ssh label: '', script: '''ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '''
+
 					}
  				}
 			}	
 	 
 	stage('Startapp') {
 	  	steps {
-		  	sshagent(['dev']) {
-				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"' 				
+				echo '>>>>>>Starting the WebApp <<<<<<<<'
+		  		sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"' 				
 				}
 			}	
 	  }
