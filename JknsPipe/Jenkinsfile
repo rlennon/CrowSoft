@@ -9,7 +9,6 @@ pipeline {
 			}	
 	stage ('Build MVC'){
 		steps {
-			 echo 'This step changes to the MVC in the jenkins workspace and runs the MSBuild.'
 			 cd /Projects/crowsoftmvc
 			 dotnet build
 			}
@@ -17,7 +16,6 @@ pipeline {
 		
 	stage ('Build Unit Test') {
 		steps{
-			sh echo "This step runs init tests "
 			//Projects/crowsoft_unittests\bin\nunit-console.exe /xml=nunit-result.xml
 			cd /Projects/crowsoft_unittests
 			dotnet test
@@ -32,7 +30,6 @@ pipeline {
 		
 	 stage('Stop app') {
 	  	steps {	
-			echo '>>>>>>Stopping the WebApp <<<<<<<<'
 			ssh label: '', script: '''ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '''
 			}
  		}
@@ -40,8 +37,7 @@ pipeline {
 	 
 	stage('Startapp') {
 	  	steps {
-			echo '>>>>>>Starting the WebApp <<<<<<<<'
-		  	sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"' 				
+			sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"' 				
 			}
 		}
 	}
