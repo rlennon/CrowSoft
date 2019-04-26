@@ -9,6 +9,7 @@ pipeline {
 			}	
 	stage ('Build MVC'){
 		steps {
+			echo '>>>>>> MSBuild <<<<<<<<<<<<<<'
 			 //cd /Projects/crowsoftmvc
 			 //dotnet build
 			}
@@ -16,6 +17,7 @@ pipeline {
 		
 	stage ('Build Unit Test') {
 		steps {
+			echo '>>>>>>  Unit Test <<<<<<<<<<<<<<'
 			//Projects/crowsoft_unittests\bin\nunit-console.exe /xml=nunit-result.xml
 			//cd /Projects/crowsoft_unittests
 			//dotnet test
@@ -24,12 +26,13 @@ pipeline {
 		
     stage ('Run Selenium Test') {
 	  	steps {
-		  	echo 'Selenium test will go in here'	
+		  	echo 'echo '>>>>>>Selenium Test<<<<<<<<<<<<<<'	
 			}
 		}	
 		
 	 stage('Stop app') {
 	  	steps {	
+			echo '>>>>>> Stop App  <<<<<<<<<<<<<<'
 			ssh label: '', script: '''ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '''
 			}
  		}
@@ -37,6 +40,7 @@ pipeline {
 	 
 	stage('Startapp') {
 	  	steps {
+			echo '>>>>>> StartApp  <<<<<<<<<<<<<<'
 			sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"' 				
 			}
 		}
