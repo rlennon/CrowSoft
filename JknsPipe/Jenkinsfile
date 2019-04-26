@@ -32,16 +32,20 @@ pipeline {
 		
 	 stage('Stop app') {
 	  	steps {	
-			echo '>>>>>> Stop App  <<<<<<<<<<<<<<'
-			sh 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '
+			sshagent(['dev']) {
+				echo '>>>>>> Stop App  <<<<<<<<<<<<<<'
+				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '
+				}
 			}
  		}
 				
 	 
 	stage('Startapp') {
 	  	steps {
-			echo '>>>>>> StartApp  <<<<<<<<<<<<<<'
-			sh 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"' 				
+			sshagent(['dev']) {
+				echo '>>>>>> StartApp  <<<<<<<<<<<<<<'
+				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"'
+				}
 			}
 		}
 	}
