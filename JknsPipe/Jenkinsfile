@@ -10,7 +10,7 @@ pipeline {
 	stage ('Build MVC'){
 		steps {
 			echo '>>>>>> MSBuild <<<<<<<<<<<<<<'
-			sh "cd /Projects/crowsoftmvc"
+			sh "cd /var/lib/jenkins/workspace/test_pipeline/Projects/crowsoftmvc"
 			sh "dotnet build"
 			}
 		}
@@ -18,7 +18,7 @@ pipeline {
 	stage ('Build Unit Test') {
 		steps {
 			echo '>>>>>>  Unit Test <<<<<<<<<<<<<<'
-			sh "cd /Projects/crowsoft_unittests"
+			sh "cd /var/lib/jenkins/workspace/test_pipeline/Projects/crowsoft_unittests"
 			sh "dotnet test"
 			}
 		}
