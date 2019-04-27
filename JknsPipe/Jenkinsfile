@@ -29,7 +29,7 @@ pipeline {
 		
 		stage ('Artifactory package') {
 		steps {
-			
+			echo '>>>>>> Copy package to artifactory  <<<<<<<<<<<<<<'
 			
 			}
 		}	
