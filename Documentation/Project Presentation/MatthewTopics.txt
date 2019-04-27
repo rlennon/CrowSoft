@@ -1,6 +1,6 @@
 Agile Development/Team Collaboration
 •	Requirements
 •	Backlog
-•	Sprint Planning 
+•	Sprints
 •	Scrum
-•	Reviews
+•	Tools
