@@ -1,5 +1,14 @@
 pipeline {
   agent any
+   options{
+		timestamp()
+   }
+   tools{
+        gradle  'gradle-4.10.2'
+    }
+    environment{
+        BUILD_NUM = '$BUILD_NUMBER'
+    }
   stages {
     stage('Checkout code') {
 	  	steps {
@@ -33,7 +42,7 @@ pipeline {
 		
 		stage ('Artifactory package') {
 		steps {
-			echo 'This step creates Artifactory package .'
+			    rtGradleResolver(id:"resolverGradle", serverId :"Artifactory")
 
 			}
 		}	
