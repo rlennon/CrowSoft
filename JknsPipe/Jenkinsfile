@@ -33,7 +33,7 @@ pipeline {
 		
 		stage ('Artifactory package') {
 		steps {
-			echo 'This step creates Artifactory package .''
+			echo 'This step creates Artifactory package .'
 
 			}
 		}	
