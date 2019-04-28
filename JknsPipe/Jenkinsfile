@@ -1,28 +1,31 @@
 pipeline {
+	agent any
+	stages {
+		stage('Checkout Code'){
+			step {
 		  	checkout scm				
-				}
 			}	
-	stage ('Build MVC')
-		step {
+		}
+		stage ('Build MVC'){
+			step {
 			 cd /Projects/crowsoftmvc
 			 pwd
 			 dotnet build
 			}
 		}
 
-	Stage ('Run Unit Test') {
-		step(
+		Stage ('Run Unit Test') {
+			step(
 			cd /Projects/crowsoft_unittests
 			pwd
 			dotnet test
 			)
-		)
+		}
     stage('Run Selenium Test') {
 	  	steps {
-		  		echo 'Selenium to go here'			
-		  		}
-			}	
-
-
-
+		  	echo 'Selenium to go here'			
+		  	}
+		}	
+	}
+}
 
