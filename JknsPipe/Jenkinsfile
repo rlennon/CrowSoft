@@ -49,7 +49,7 @@ pipeline {
 			sshagent(['dev']) {
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo pwd" '
-				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo cd dev" '
+				sh label: '', script: 'ansible devadmin@172.28.25.133 -m "sudo cd dev" '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo mkdir "pkgbk.$(date +"%d%m%y%s")" " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo mv c* "pkgbk.$(date +"%d%m%y%s")" " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo rm -r Projects " '
