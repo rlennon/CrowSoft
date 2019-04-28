@@ -2,25 +2,25 @@ pipeline {
 	agent any
 	stages {
 		stage('Checkout Code'){
-			step {
+			steps {
 		  	checkout scm				
 			}	
 		}
 		stage ('Build MVC'){
-			step {
+			steps {
 			sh 'cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoftmvc'
 			sh 'dotnet build'
 			}
 		}
 
 		Stage ('Run Unit Test') {
-			step(
+			steps (
 			sh 'cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoft_unittests'
 			sh 'dotnet test'
 			)
 		}
     stage('Run Selenium Test') {
-	  	steps {
+	  	stepss {
 		  	echo 'Selenium to go here'			
 		  	}
 		}	
