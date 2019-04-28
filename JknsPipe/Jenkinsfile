@@ -48,13 +48,13 @@ pipeline {
 	  	steps {	
 			sshagent(['dev']) {
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '
-				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /home/devadmin/dev" '
+				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /dev" '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mkdir "pkgbk.$(date +"%d%m%y%s")" " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv c* "pkgbk.$(date +"%d%m%y%s")" " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "rm -r Projects " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "chmod 766 projects.zip " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "unzip projects.zip " '
-				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /home/devadmin/dev/Projects " '
+				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /Projects " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo mv  /home/devadmin/dev/Projects/crow* /home/devadmin/dev " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo dotnet publish /home/devadmin/dev/crowsoftmvc/crowsoftmvc.csproj –c release -o /var/www/crowsoftwww " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service " '
