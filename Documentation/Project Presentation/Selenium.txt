@@ -1,0 +1,6 @@
+Selenium:
+•	Selenium WebDriver is a UI testing framework
+•	Selenium test project created on Visual Studio
+o	Test cases created 
+•	Automated via Jenkins
+•	options.AddArgument("--headless");
