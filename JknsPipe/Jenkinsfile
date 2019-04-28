@@ -8,17 +8,15 @@ pipeline {
 		}
 		stage ('Build MVC'){
 			step {
-			 cd /Projects/crowsoftmvc
-			 pwd
-			 dotnet build
+			sh 'cd /Projects/crowsoftmvc'
+			sh 'dotnet build'
 			}
 		}
 
 		Stage ('Run Unit Test') {
 			step(
-			cd /Projects/crowsoft_unittests
-			pwd
-			dotnet test
+			sh 'cd /Projects/crowsoft_unittests'
+			sh 'dotnet test'
 			)
 		}
     stage('Run Selenium Test') {
