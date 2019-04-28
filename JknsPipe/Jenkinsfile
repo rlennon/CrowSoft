@@ -8,18 +8,18 @@ pipeline {
 		}
 		stage ('Build MVC'){
 			steps {
-					echo 'MSBuild'
+				sh 'echo MSBuild'
 			}
 		}
 
 		Stage ('Run Unit Test') {
 			steps (
-					echo 'UnitTest'
+				sh	'echo UnitTest'
 			)
 		}
     stage('Run Selenium Test') {
 	  	stepss {
-		  	echo 'SeleniumTest'			
+		  	sh 'echo SeleniumTest'			
 		  	}
 		}	
 	}
