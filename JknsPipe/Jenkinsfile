@@ -8,14 +8,14 @@ pipeline {
 				}
 			}	
 	stage ('Build MVC'){
-		step {
+		steps {
 			cd Projects/crowsoftmvc
 			dotnet build
 			}
 		}
 		
 	stage ('Build Unit Test') {
-		step {
+		steps {
 			cd Projects/crowsoft_unittests
 			dotnet test
 			}
@@ -35,7 +35,7 @@ pipeline {
 		}	
 		
 	 stage('Stop app') {
-	  	steps {	
+	  	step {	
 			sshagent(['dev']) {
 				echo '>>>>>> Stop App  <<<<<<<<<<<<<<'
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '
@@ -48,7 +48,7 @@ pipeline {
  		}
 	 
 	stage('Startapp') {
-	  	steps {
+	  	step {
 			sshagent(['dev']) {
 				echo '>>>>>> StartApp  <<<<<<<<<<<<<<'
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"'
