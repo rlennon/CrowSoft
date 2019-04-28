@@ -10,9 +10,9 @@ pipeline {
 	stage ('Build MVC'){
 		steps {
 			echo 'This step runs MSBuild.'
-			//sh "cd Projects/crowsoftmvc"
-			//sh "dotnet build"
-			//sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoftmvc"
+			sh "cd Projects/crowsoftmvc"
+			sh "dotnet build"
+			sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoftmvc"
 			}
 		}
 		
