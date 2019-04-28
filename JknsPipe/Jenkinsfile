@@ -3,20 +3,19 @@ pipeline {
   stages {
     stage('Checkout code') {
 	  	steps {
-			echo 'This step checks out SCM code.'
-		  	checkout scm				
-				}
+				checkout scm				
+			  }
 			}	
 	stage ('Build MVC'){
 		steps {
-			cd Projects/crowsoftmvc
+			cd /Projects/crowsoftmvc
 			dotnet build
 			}
 		}
 		
 	stage ('Build Unit Test') {
 		steps {
-			cd Projects/crowsoft_unittests
+			cd /Projects/crowsoft_unittests
 			dotnet test
 			}
 		}
