@@ -10,18 +10,18 @@ pipeline {
 	stage ('Build MVC'){
 		steps {
 			echo 'This step runs MSBuild.'
-			#sh "cd Projects/crowsoftmvc"
-			#sh "dotnet build"
-			#sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoftmvc"
+			//sh "cd Projects/crowsoftmvc"
+			//sh "dotnet build"
+			//sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoftmvc"
 			}
 		}
 		
 	stage ('Build Unit Test') {
 		steps {
 			echo 'This step runs Unit test.'
-			#sh "cd Projects/crowsoft_unittests"
-			#sh "dotnet test"
-			##sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoft_unittests"
+			//sh "cd Projects/crowsoft_unittests"
+			//sh "dotnet test"
+			//sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoft_unittests"
 			}
 		}
 		
@@ -43,10 +43,10 @@ pipeline {
 			sshagent(['dev']) {
 				echo 'echo 'This step stops app.''
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '
-				#//echo '>>>>>> backup existing package <<<<<<<<<<<<<<'
-				#//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /home/devadmin/dev" '
-				#//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv crowsoftmvc crowsoftmvc-bk mv crowsoft_unittests crowsoft_unittests-bk" '
-				#//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv crowsoft_unittests crowsoft_unittests-bk" '
+				//echo '>>>>>> backup existing package <<<<<<<<<<<<<<'
+				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /home/devadmin/dev" '
+				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv crowsoftmvc crowsoftmvc-bk mv crowsoft_unittests crowsoft_unittests-bk" '
+				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv crowsoft_unittests crowsoft_unittests-bk" '
 				}
 			}
  		}
@@ -55,7 +55,7 @@ pipeline {
 	  	steps {
 			sshagent(['dev']) {
 				echo '>>>>>> StartApp  <<<<<<<<<<<<<<'
-				#sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"'
+				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"'
 				}
 			}
 		}
