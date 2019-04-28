@@ -6,6 +6,11 @@ pipeline {
 		  	checkout scm				
 			}	
 		}
+		stage ('Build MVC')
+		step {
+			sh label: '', script: '''cd /Projects/crowsoftmvc
+			dotnet build'''
+			}
 
 	}
 }
