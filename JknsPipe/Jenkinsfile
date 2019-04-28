@@ -6,22 +6,7 @@ pipeline {
 		  	checkout scm				
 			}	
 		}
-		stage ('Build MVC'){
-			steps {
-				sh 'echo MSBuild'
-			}
-		}
 
-		Stage ('Run Unit Test') {
-			steps (
-				sh	'echo UnitTest'
-			)
-		}
-    stage('Run Selenium Test') {
-	  	stepss {
-		  	sh 'echo SeleniumTest'			
-		  	}
-		}	
 	}
 }
 
