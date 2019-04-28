@@ -1,17 +1,62 @@
 pipeline {
-	agent any
-	stages {
-		stage('Checkout Code'){
-			steps {
+  agent any
+  stages {
+    stage('Checkout code') {
+	  	steps {
+			echo 'This step checks out SCM code.'
 		  	checkout scm				
+				}
 			}	
-		}
-		stage ('Build MVC')
-		step {
-			sh label: '', script: '''cd /Projects/crowsoftmvc
-			dotnet build'''
+	stage ('Build MVC'){
+		steps {
+			sh "cd Projects/crowsoftmvc"
+			sh "dotnet build"
+			//sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoftmvc"
 			}
-
+		}
+		
+	stage ('Build Unit Test') {
+		steps {
+			sh "cd Projects/crowsoft_unittests"
+			sh "dotnet test"
+			//sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoft_unittests"
+			}
+		}
+		
+    stage ('Run Selenium Test') {
+	  	steps {
+		  	echo '>>>>>>Selenium Test<<<<<<<<<<<<<<'	
+			}
+		}	
+		
+		stage ('Artifactory package') {
+		steps {
+			echo '>>>>>> Copy package to artifactory  <<<<<<<<<<<<<<'
+			
+			}
+		}	
+		
+	 stage('Stop app') {
+	  	steps {	
+			sshagent(['dev']) {
+				echo '>>>>>> Stop App  <<<<<<<<<<<<<<'
+				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '
+				//echo '>>>>>> backup existing package <<<<<<<<<<<<<<'
+				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /home/devadmin/dev" '
+				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv crowsoftmvc crowsoftmvc-bk mv crowsoft_unittests crowsoft_unittests-bk" '
+				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv crowsoft_unittests crowsoft_unittests-bk" '
+				}
+			}
+ 		}
+	 
+	stage('Startapp') {
+	  	steps {
+			sshagent(['dev']) {
+				echo '>>>>>> StartApp  <<<<<<<<<<<<<<'
+				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"'
+				}
+			}
+		}
 	}
 }
 
