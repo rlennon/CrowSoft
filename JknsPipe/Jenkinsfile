@@ -8,15 +8,13 @@ pipeline {
 		}
 		stage ('Build MVC'){
 			steps {
-			sh 'cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoftmvc'
-			sh 'dotnet build'
+					echo 'MSBuild'
 			}
 		}
 
 		Stage ('Run Unit Test') {
 			steps (
-			sh 'cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoft_unittests'
-			sh 'dotnet test'
+					echo 'Unit Test'
 			)
 		}
     stage('Run Selenium Test') {
