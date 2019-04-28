@@ -33,15 +33,15 @@ pipeline {
 		
 		stage ('Artifactory package') {
 		steps {
-			echo 'echo 'This step creates Artifactory package .''
-			
+			echo 'This step creates Artifactory package .''
+
 			}
 		}	
 		
 	 stage('Stop app') {
 	  	steps {	
 			sshagent(['dev']) {
-				echo 'echo 'This step stops app.''
+				echo 'This step stops app.'
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '
 				//echo '>>>>>> backup existing package <<<<<<<<<<<<<<'
 				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /home/devadmin/dev" '
