@@ -5,7 +5,13 @@ pipeline {
 	  	steps {
 				checkout scm				
 			  }
-			}	
+			}
+	stage ('Build MVC'){
+		steps {
+			cd /Projects/crowsoftmvc
+			dotnet build
+			}
+		}
 
 	}
 }
