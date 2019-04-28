@@ -10,9 +10,9 @@ pipeline {
 	stage ('Build MVC'){
 		steps {
 			echo 'This step runs MSBuild.'
-			sh "cd Projects/crowsoftmvc"
-			sh "dotnet build"
-			sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoftmvc"
+			//sh "cd Projects/crowsoftmvc"
+			//sh "dotnet build"
+			//sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoftmvc"
 			}
 		}
 		
@@ -38,11 +38,11 @@ pipeline {
 			}
 		}	
 		
-	 stage('Stop app') {
+	 stage('Ansible stop publish and restart') {
 	  	steps {	
 			sshagent(['dev']) {
 				echo 'This step stops app.'
-				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '
+				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '
 				//echo '>>>>>> backup existing package <<<<<<<<<<<<<<'
 				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /home/devadmin/dev" '
 				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv crowsoftmvc crowsoftmvc-bk mv crowsoft_unittests crowsoft_unittests-bk" '
@@ -51,14 +51,6 @@ pipeline {
 			}
  		}
 	 
-	stage('Startapp') {
-	  	steps {
-			sshagent(['dev']) {
-				echo '>>>>>> StartApp  <<<<<<<<<<<<<<'
-				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"'
-				}
-			}
-		}
 	}
 }
 
