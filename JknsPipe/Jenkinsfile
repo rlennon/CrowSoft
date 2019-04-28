@@ -4,34 +4,36 @@ pipeline {
     stage('Checkout code') {
 	  	steps {
 			echo 'This step checks out SCM code.'
-		  	checkout scm				
+		  	#checkout scm				
 				}
 			}	
 	stage ('Build MVC'){
 		steps {
-			sh "cd Projects/crowsoftmvc"
-			sh "dotnet build"
-			//sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoftmvc"
+			echo 'This step runs MSBuild.'
+			#sh "cd Projects/crowsoftmvc"
+			#sh "dotnet build"
+			#sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoftmvc"
 			}
 		}
 		
 	stage ('Build Unit Test') {
 		steps {
-			sh "cd Projects/crowsoft_unittests"
-			sh "dotnet test"
-			//sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoft_unittests"
+			echo 'This step runs Unit test.'
+			#sh "cd Projects/crowsoft_unittests"
+			#sh "dotnet test"
+			##sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoft_unittests"
 			}
 		}
 		
     stage ('Run Selenium Test') {
 	  	steps {
-		  	echo '>>>>>>Selenium Test<<<<<<<<<<<<<<'	
+		  	echo 'echo 'This step runs Selenium Test.''	
 			}
 		}	
 		
 		stage ('Artifactory package') {
 		steps {
-			echo '>>>>>> Copy package to artifactory  <<<<<<<<<<<<<<'
+			echo 'echo 'This step creates Artifactory package .''
 			
 			}
 		}	
@@ -39,12 +41,12 @@ pipeline {
 	 stage('Stop app') {
 	  	steps {	
 			sshagent(['dev']) {
-				echo '>>>>>> Stop App  <<<<<<<<<<<<<<'
+				echo 'echo 'This step stops app.''
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl stop crowsoft-webapp.service" '
-				//echo '>>>>>> backup existing package <<<<<<<<<<<<<<'
-				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /home/devadmin/dev" '
-				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv crowsoftmvc crowsoftmvc-bk mv crowsoft_unittests crowsoft_unittests-bk" '
-				//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv crowsoft_unittests crowsoft_unittests-bk" '
+				#//echo '>>>>>> backup existing package <<<<<<<<<<<<<<'
+				#//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /home/devadmin/dev" '
+				#//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv crowsoftmvc crowsoftmvc-bk mv crowsoft_unittests crowsoft_unittests-bk" '
+				#//sh label: '', script: 'ansible devadmin@172.28.25.133 -a "mv crowsoft_unittests crowsoft_unittests-bk" '
 				}
 			}
  		}
@@ -53,7 +55,7 @@ pipeline {
 	  	steps {
 			sshagent(['dev']) {
 				echo '>>>>>> StartApp  <<<<<<<<<<<<<<'
-				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"'
+				#sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service"'
 				}
 			}
 		}
