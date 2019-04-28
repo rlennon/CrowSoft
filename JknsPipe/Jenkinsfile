@@ -4,9 +4,9 @@ pipeline {
     stage('Checkout code') {
 	  	steps {
 			echo 'This step checks out SCM code.'
-		  	#checkout scm				
-				}
-			}	
+		  	checkout scm				
+			}
+		}	
 	stage ('Build MVC'){
 		steps {
 			echo 'This step runs MSBuild.'
