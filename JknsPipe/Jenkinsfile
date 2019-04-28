@@ -14,12 +14,12 @@ pipeline {
 
 		Stage ('Run Unit Test') {
 			steps (
-					echo 'Unit Test'
+					echo 'UnitTest'
 			)
 		}
     stage('Run Selenium Test') {
 	  	stepss {
-		  	echo 'Selenium to go here'			
+		  	echo 'SeleniumTest'			
 		  	}
 		}	
 	}
