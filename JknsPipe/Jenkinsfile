@@ -56,7 +56,7 @@ pipeline {
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "unzip projects.zip " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "cd /home/devadmin/dev/Projects " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo mv  /home/devadmin/dev/Projects/crow* /home/devadmin/dev " '
-				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo dotnet publish '/home/devadmin/dev/crowsoftmvc/crowsoftmvc.csproj –c release /var/www/crowsoftwww' " '
+				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo dotnet publish /home/devadmin/dev/crowsoftmvc/crowsoftmvc.csproj –c release -o /var/www/crowsoftwww " '
 				sh label: '', script: 'ansible devadmin@172.28.25.133 -a "sudo systemctl start crowsoft-webapp.service " '
 								
 				}
