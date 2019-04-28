@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -34,6 +34,8 @@ namespace crowsoftmvc.Data
         {
             return new MySqlConnection(ConnectionString);
         }
+
+        public DbSet<crowsoftmvc.Models.BuildingFeatures> BuildingFeatures { get; set; }
 
         
 
