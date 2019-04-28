@@ -8,8 +8,8 @@ pipeline {
 			}
 	stage ('Build MVC'){
 		steps {
-			cd /Projects/crowsoftmvc
-			dotnet build
+		 	sh 'cd /Projects/crowsoftmvc'
+			sh 'dotnet build'
 			}
 		}
 
