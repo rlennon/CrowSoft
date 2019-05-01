@@ -23,12 +23,12 @@ namespace crowsoftmvc.Models
         [HiddenInput(DisplayValue = false)]
         public int UserAccountIdUserAccount { get; set; }
 
-        [Display(Name = "Description")]
+        [Display(Name = "Buidling Name")]
         [StringLength(100)]
         [Required(ErrorMessage = "{0} is required.")]
         public string Description { get; set; }
 
-        [Display(Name = "Select a Measurement")]
+        [Display(Name = "Select a Measurement (Meters Only")]
         [StringLength(20)]
         [Required(ErrorMessage = "{0} is required.")]
         public string MeasurementType { get; set; }
@@ -43,15 +43,15 @@ namespace crowsoftmvc.Models
             set => Measurements.GetMeasurements();
         }
 
-        [Display(Name = "Height")]
+        [Display(Name = "Height (Mtrs)")]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int Height { get; set; }
 
-        [Display(Name = "Width")]
+        [Display(Name = "Width (Mtrs)")]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int Width { get; set; }
 
-        [Display(Name = "Depth")]
+        [Display(Name = "Depth (Mtrs)")]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int Depth { get; set; }
 
@@ -60,7 +60,7 @@ namespace crowsoftmvc.Models
         [Required(ErrorMessage = "{0} is required.")]
         public string PurposeOfBuilding { get; set; }
 
-        [Display(Name = "Building Size in Sqr Meters")]
+        [Display(Name = "Building Size (Sqr Meters)")]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int? BuildingSize { get; set; }
 
@@ -71,20 +71,16 @@ namespace crowsoftmvc.Models
         [Range(0, 9999999999999999.99)]
         public decimal? TotalCost { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
         public DateTime? DateCreated { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
         public string Status { get; set; }
 
         [Display(Name = "Timeframe of Project (Months)")]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int? TimeFrame { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
         public DateTime? DateUpdated { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
         public int? UpdatedById { get; set; }
 
         [NotMapped]

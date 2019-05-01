@@ -13,11 +13,21 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            @*<div class="form-group">
+                    <label value="Building Qoute Number: " class="control-label"></label>
+                    <label value="Model._buildingQouteId" class="form-control" />
+                </div>*@
+            @*<div class="form-group">
                 <label asp-for="FeatureDescription" class="control-label"></label>
-                <input asp-for="FeatureDescription" class="form-control" />
+                <div class="col-md-10">
+                    <select asp-for="FeatureDescription" asp-items="ViewBag.DefaultFeatureIdDefaultFeature" onselect=""></select>
+                </div>
                 <span asp-validation-for="FeatureDescription" class="text-danger"></span>
-            </div>
+            </div>*@
+            <div class="form-group">
+                    <label asp-for="DefaultFeatureIdDefaultFeature" class="control-label"></label>
+                    <select asp-for="FeatureDescription" class="form-control" asp-items="ViewBag.DefaultFeatureIdDefaultFeature"></select>
+                </div>
             <div class="form-group">
                 <label asp-for="Comments" class="control-label"></label>
                 <input asp-for="Comments" class="form-control" />
@@ -28,24 +38,21 @@
                 <input asp-for="Quantity" class="form-control" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="UnitPrice" class="control-label"></label>
-                <input asp-for="UnitPrice" class="form-control" />
+            <div class="form-group" hidden="hidden">
+                <label asp-for="UnitPrice" class="control-label" hidden="hidden"></label>
+                <input asp-for="UnitPrice" class="form-control"  hidden="hidden"/>
                 <span asp-validation-for="UnitPrice" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="TotalCost" class="control-label"></label>
-                <input asp-for="TotalCost" class="form-control" />
-                <span asp-validation-for="TotalCost" class="text-danger"></span>
+            <div class="form-group" hidden="hidden">
+                <label asp-for="TotalCost" class="control-label" hidden="hidden"></label>
+                <input asp-for="TotalCost" class="form-control" hidden="hidden"/>
+                <span asp-validation-for="TotalCost" class="text-danger" hidden="hidden"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="BuildingQuoteIdBuildingQuote" class="control-label"></label>
-                <select asp-for="BuildingQuoteIdBuildingQuote" class ="form-control" asp-items="ViewBag.BuildingQuoteIdBuildingQuote"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="DefaultFeatureIdDefaultFeature" class="control-label"></label>
-                <select asp-for="DefaultFeatureIdDefaultFeature" class ="form-control" asp-items="ViewBag.DefaultFeatureIdDefaultFeature"></select>
-            </div>
+            <div class="form-group" hidden="hidden">
+                    <label asp-for="BuildingQuoteIdBuildingQuote" class="control-label" hidden="hidden"></label>
+                    <select asp-for="BuildingQuoteIdBuildingQuote" class="form-control" asp-items="ViewBag.BuildingQuoteIdBuildingQuote" hidden="hidden"></select>
+                </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -54,7 +61,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-route-idBuildingQoute='@ViewBag.BuildingQuoteId'>Back to Features List</a>
 </div>
 
 @section Scripts {

@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using crowsoftmvc.Areas.Identity.Data;
 using crowsoftmvc.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 
 namespace crowsoftmvc
 {
@@ -45,6 +47,9 @@ namespace crowsoftmvc
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddSingleton<IFileProvider>(
+                new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageFiles")));
 
             services.AddMvc(obj =>
                {
@@ -100,6 +105,8 @@ namespace crowsoftmvc
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+
+            app.UseStaticFiles();
 
             //REMEMBER TO UNCOMMENT THIS BEFORE CHECKING INTO CROWSOFT
             //app.UseForwardedHeaders(new ForwardedHeadersOptions

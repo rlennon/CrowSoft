@@ -1,0 +1,51 @@
+﻿@model crowsoftmvc.Models.BuildingImage
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>BuildingImage</h4>
+<hr />
+<form asp-controller="BuildingImages" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-4">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p>Upload one file:</p>
+                    <input type="file" name="file"  />
+                </div>
+            </div>
+            <div class="form-group" hidden="hidden">
+                <label asp-for="ImagePath" class="control-label" hidden="hidden"></label>
+                <input asp-for="ImagePath" class="form-control" hidden="hidden" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" hidden="hidden">
+                <label asp-for="BuildingQuoteIdBuildingQuote" class="control-label" hidden="hidden"></label>
+                <select asp-for="BuildingQuoteIdBuildingQuote" class="form-control" asp-items="ViewBag.BuildingQuoteIdBuildingQuote" hidden="hidden"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index" asp-route-idBuildingQoute='@ViewBag.BuildingQuoteId'>Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

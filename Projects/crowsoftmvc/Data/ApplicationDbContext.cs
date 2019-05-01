@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,7 +11,7 @@ namespace crowsoftmvc.Data
 {
     public class ApplicationDbContext : IdentityDbContext<CrowsoftUser>
     {
-        public string ConnectionString { get; set; }
+        private string ConnectionString { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -37,7 +37,11 @@ namespace crowsoftmvc.Data
 
         public DbSet<crowsoftmvc.Models.BuildingFeatures> BuildingFeatures { get; set; }
 
-        
+        public DbSet<crowsoftmvc.Models.BuildingImage> BuildingImage { get; set; }
+
+        public DbSet<crowsoftmvc.Models.BuildingQuote> BuildingQuote { get; set; }
+
+      
 
 
     }

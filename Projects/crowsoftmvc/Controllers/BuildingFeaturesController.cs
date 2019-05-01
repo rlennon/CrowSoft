@@ -7,23 +7,35 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using crowsoftmvc.Data;
 using crowsoftmvc.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace crowsoftmvc.Controllers
 {
+    [Authorize]
     public class BuildingFeaturesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        public int BuildQuotID = 0;
+
+        [BindProperty]
+        public InputModelBuidlingFeatures Input { get; set; }
 
         public BuildingFeaturesController(ApplicationDbContext context)
         {
             _context = context;
+            Input = new InputModelBuidlingFeatures();
         }
+        
 
         // GET: BuildingFeatures
-        public async Task<IActionResult> Index()
+        //[Route("InputModelBuidlingFeatures/{buildingQouteId:int}")]
+        public async Task<IActionResult> Index(int idBuildingQoute)
         {
+            BuildQuotID = idBuildingQoute;
+            Input.buildingQouteId = idBuildingQoute.ToString();
             var applicationDbContext = _context.BuildingFeatures.Include(b => b.BuildingQuoteIdBuildingQuoteNavigation).Include(b => b.DefaultFeatureIdDefaultFeatureNavigation);
-            return View(await applicationDbContext.ToListAsync());
+            Input.buildingFeaters = await applicationDbContext.Where(b => b.BuildingQuoteIdBuildingQuote == idBuildingQoute).ToListAsync();
+            return View(Input);
         }
 
         // GET: BuildingFeatures/Details/5
@@ -38,20 +50,26 @@ namespace crowsoftmvc.Controllers
                 .Include(b => b.BuildingQuoteIdBuildingQuoteNavigation)
                 .Include(b => b.DefaultFeatureIdDefaultFeatureNavigation)
                 .FirstOrDefaultAsync(m => m.IdBuildingFeatures == id);
+
             if (buildingFeatures == null)
             {
                 return NotFound();
             }
-
+            ViewData["BuildingQuoteId"] = buildingFeatures.BuildingQuoteIdBuildingQuote;
             return View(buildingFeatures);
         }
 
         // GET: BuildingFeatures/Create
-        public IActionResult Create()
+        public IActionResult Create(int buildingQouteId)
         {
+            Input.buildingQouteId = buildingQouteId.ToString();
             ViewData["BuildingQuoteIdBuildingQuote"] = new SelectList(_context.Set<BuildingQuote>(), "IdBuildingQuote", "Description");
-            ViewData["DefaultFeatureIdDefaultFeature"] = new SelectList(_context.DefaultFeature, "IdDefaultFeature", "Description");
-            return View();
+            ViewData["DefaultFeatureIdDefaultFeature"] = new SelectList(_context.DefaultFeature.Where(f => f.IsDefaultFeature == 0).ToList(), "IdDefaultFeature", "Description");
+            BuildingFeatures buildingFeatures = new BuildingFeatures();
+            buildingFeatures.TotalCost = decimal.Parse("0.00");
+            buildingFeatures.BuildingQuoteIdBuildingQuote = buildingQouteId;
+            ViewData["BuildingQuoteId"] = buildingFeatures.BuildingQuoteIdBuildingQuote;
+            return View(buildingFeatures);
         }
 
         // POST: BuildingFeatures/Create
@@ -61,14 +79,22 @@ namespace crowsoftmvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdBuildingFeatures,FeatureDescription,Comments,Quantity,UnitPrice,TotalCost,BuildingQuoteIdBuildingQuote,DefaultFeatureIdDefaultFeature")] BuildingFeatures buildingFeatures)
         {
-            if (ModelState.IsValid)
+        
+         if (ModelState.IsValid)
             {
+                var feature = _context.DefaultFeature.Where(f => f.IdDefaultFeature == int.Parse(buildingFeatures.FeatureDescription)).FirstOrDefault();
+                buildingFeatures.FeatureDescription = feature.Description;
+                buildingFeatures.DefaultFeatureIdDefaultFeature = feature.IdDefaultFeature;
+                buildingFeatures.UnitPrice = feature.UnitPrice;
+                buildingFeatures.TotalCost = buildingFeatures.UnitPrice * buildingFeatures.Quantity;
+               // buildingFeatures.BuildingQuoteIdBuildingQuote = int.Parse(Input.buildingQouteId);
                 _context.Add(buildingFeatures);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(actionName: "Index", controllerName: "BuildingFeatures", routeValues: new { idBuildingQoute = buildingFeatures.BuildingQuoteIdBuildingQuote});
             }
             ViewData["BuildingQuoteIdBuildingQuote"] = new SelectList(_context.Set<BuildingQuote>(), "IdBuildingQuote", "Description", buildingFeatures.BuildingQuoteIdBuildingQuote);
             ViewData["DefaultFeatureIdDefaultFeature"] = new SelectList(_context.DefaultFeature, "IdDefaultFeature", "Description", buildingFeatures.DefaultFeatureIdDefaultFeature);
+            ViewData["BuildingQuoteId"] = buildingFeatures.BuildingQuoteIdBuildingQuote;
             return View(buildingFeatures);
         }
 
@@ -87,6 +113,7 @@ namespace crowsoftmvc.Controllers
             }
             ViewData["BuildingQuoteIdBuildingQuote"] = new SelectList(_context.Set<BuildingQuote>(), "IdBuildingQuote", "Description", buildingFeatures.BuildingQuoteIdBuildingQuote);
             ViewData["DefaultFeatureIdDefaultFeature"] = new SelectList(_context.DefaultFeature, "IdDefaultFeature", "Description", buildingFeatures.DefaultFeatureIdDefaultFeature);
+            ViewData["BuildingQuoteId"] = buildingFeatures.BuildingQuoteIdBuildingQuote;
             return View(buildingFeatures);
         }
 
@@ -106,6 +133,11 @@ namespace crowsoftmvc.Controllers
             {
                 try
                 {
+                    var feature = _context.DefaultFeature.Where(f => f.IdDefaultFeature == int.Parse(buildingFeatures.FeatureDescription)).FirstOrDefault();
+                    buildingFeatures.FeatureDescription = feature.Description;
+                    buildingFeatures.DefaultFeatureIdDefaultFeature = feature.IdDefaultFeature;
+                    buildingFeatures.UnitPrice = feature.UnitPrice;
+                    buildingFeatures.TotalCost = buildingFeatures.UnitPrice * buildingFeatures.Quantity;
                     _context.Update(buildingFeatures);
                     await _context.SaveChangesAsync();
                 }
@@ -120,10 +152,11 @@ namespace crowsoftmvc.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(actionName: "Index", controllerName: "BuildingFeatures", routeValues: new { idBuildingQoute = buildingFeatures.BuildingQuoteIdBuildingQuote });
             }
             ViewData["BuildingQuoteIdBuildingQuote"] = new SelectList(_context.Set<BuildingQuote>(), "IdBuildingQuote", "Description", buildingFeatures.BuildingQuoteIdBuildingQuote);
             ViewData["DefaultFeatureIdDefaultFeature"] = new SelectList(_context.DefaultFeature, "IdDefaultFeature", "Description", buildingFeatures.DefaultFeatureIdDefaultFeature);
+            ViewData["BuildingQuoteId"] = buildingFeatures.BuildingQuoteIdBuildingQuote;
             return View(buildingFeatures);
         }
 
@@ -143,7 +176,7 @@ namespace crowsoftmvc.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["BuildingQuoteId"] = buildingFeatures.BuildingQuoteIdBuildingQuote;
             return View(buildingFeatures);
         }
 
@@ -155,7 +188,7 @@ namespace crowsoftmvc.Controllers
             var buildingFeatures = await _context.BuildingFeatures.FindAsync(id);
             _context.BuildingFeatures.Remove(buildingFeatures);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(actionName: "Index", controllerName: "BuildingFeatures", routeValues: new { idBuildingQoute = buildingFeatures.BuildingQuoteIdBuildingQuote });
         }
 
         private bool BuildingFeaturesExists(int id)

@@ -1,0 +1,97 @@
+﻿@model crowsoftmvc.Models.BuildingQuote
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create New Quote</h1>
+
+<h4>Building Quote Header</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" type="hidden">
+                <label asp-for="UserAccountIdUserAccount" class="control-label" type="hidden"></label>
+                <input asp-for="UserAccountIdUserAccount" class="form-control" type="hidden" />
+                <span asp-validation-for="UserAccountIdUserAccount" class="text-danger" type="hidden"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurposeOfBuilding" class="control-label"></label>
+                <input asp-for="PurposeOfBuilding" class="form-control" />
+                <span asp-validation-for="PurposeOfBuilding" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MeasurementType" class="control-label"></label>
+                <input asp-for="MeasurementType" class="form-control" value="Meters" title="Meters" />
+                <span asp-validation-for="MeasurementType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Height" class="control-label"></label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Width" class="control-label"></label>
+                <input asp-for="Width" class="form-control" />
+                <span asp-validation-for="Width" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Depth" class="control-label"></label>
+                <input asp-for="Depth" class="form-control" />
+                <span asp-validation-for="Depth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BuildingSize" class="control-label"></label>
+                <input asp-for="BuildingSize" class="form-control" />
+                <span asp-validation-for="BuildingSize" class="text-danger"></span>
+            </div>
+            <div class="form-group" type="hidden">
+                <label asp-for="TotalCost" class="control-label" hidden="hidden"></label>
+                <input asp-for="TotalCost" class="form-control" hidden="hidden" />
+                <span asp-validation-for="TotalCost" class="text-danger"></span>
+            </div>
+            <div class="form-group" type="hidden">
+                <label asp-for="DateCreated" class="control-label" hidden="hidden"></label>
+                <input asp-for="DateCreated" class="form-control" hidden="hidden" />
+                <span asp-validation-for="DateCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group" type="hidden">
+                <label asp-for="Status" class="control-label" hidden="hidden"></label>
+                <input asp-for="Status" class="form-control" hidden="hidden" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeFrame" class="control-label"></label>
+                <input asp-for="TimeFrame" class="form-control" />
+                <span asp-validation-for="TimeFrame" class="text-danger"></span>
+            </div>
+            <div class="form-group" type="hidden">
+                <label asp-for="DateUpdated" class="control-label" hidden="hidden"></label>
+                <input asp-for="DateUpdated" class="form-control" hidden="hidden" />
+            </div>
+            <div class="form-group" type="hidden">
+                <label asp-for="UpdatedById" class="control-label" hidden="hidden"></label>
+                <input asp-for="UpdatedById" class="form-control" hidden="hidden" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create Quote (Next Step)" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -6,7 +6,8 @@
 
 <h1>Edit</h1>
 
-<h4>DefaultFeature</h4>
+<h4>Building Default Feature</h4>
+<h6>Note: When you checked the Default Feature checkbox, this feature will not display to clients, but added when the quote is generated!</h6>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -30,7 +31,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="IsDefaultFeature" class="control-label"></label>
-                <input asp-for="IsDefaultFeature" class="form-control" />
+                @*<input asp-for-ch="IsDefaultFeature" class="form-control" />*@
+                <input type="checkbox" data-val="1" data-val-required="The IsDefaultFeature field is required." id="IsDefaultFeature" name="IsDefaultFeature" value="1">
                 <span asp-validation-for="IsDefaultFeature" class="text-danger"></span>
             </div>
             <div class="form-group">

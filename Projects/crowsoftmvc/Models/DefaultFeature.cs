@@ -43,6 +43,7 @@ namespace crowsoftmvc.Models
         public decimal UnitPrice { get; set; }
 
         [UIHint("ByteCheckbox")]
+        [Display(Name = "Default Feature")]
         public sbyte? IsDefaultFeature { get; set; }
         [NotMapped] //this is key to prevent EntityFramework from trying to match against a database field
         public bool ActiveBool

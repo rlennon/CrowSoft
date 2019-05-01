@@ -1,0 +1,77 @@
+﻿@model IEnumerable<crowsoftmvc.Models.BuildingQuote>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>List of Building Quotes for - @ViewBag.UserName</h1>
+
+<p>
+    <a asp-action="Create">Create New Quote</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Choose Actions
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurposeOfBuilding)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeFrame)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateUpdated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdBuildingQuote">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdBuildingQuote">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdBuildingQuote">Delete</a> |
+                <a asp-action="CreateFeature" asp-route-id="@item.IdBuildingQuote">Add Building Details</a> |
+                <a asp-action="AddImages" asp-route-id="@item.IdBuildingQuote">Add Images</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurposeOfBuilding)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildingSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeFrame)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateUpdated)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

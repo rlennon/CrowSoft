@@ -5,6 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace crowsoftmvc.Models
 {
+    public class InputModelBuidlingFeatures
+    {
+        public string buildingQouteId { get; set; }
+        public IEnumerable<BuildingFeatures> buildingFeaters { get; set; }
+    }
+
     public partial class BuildingFeatures
     {
         [Key]
@@ -22,7 +28,7 @@ namespace crowsoftmvc.Models
 
         [Display(Name = "Quantity")]
         [Required(ErrorMessage = "Please provide a quantity")]
-        [RegularExpression(@"^\d+\.\d{0,4}$")]        [Range(0, 9999999999999999.9999)]
+        [DisplayFormat(DataFormatString = "{0:n}")]
         public decimal Quantity { get; set; }
 
         [Display(Name = "Unit Price")]
