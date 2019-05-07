@@ -1,18 +1,34 @@
-pipeline {
+﻿pipeline {
   agent any
+options{
+	timestamps()
+	disableConcurrentBuilds()
+	buildDiscarder(logRotator(numToKeepStr:'3', artifactNumToKeepStr :'6'))
+	}
    tools{
         gradle  'gradle-4.10.2'
     }
     environment{
         BUILD_NUM = '$BUILD_NUMBER'
     }
-  stages {
-    stage('Checkout code') {
-	  	steps {
-			echo 'This step checks out SCM code.'
-		  	checkout scm				
+  stages{
+		stage('Artifactory Defined'){
+			steps{
+				rtGradleResolver(id: 'resolvecrosoft', serverId:'Art-Server-1')
+				rtGradleDeployer(id:'deploycrosoft', serverId :'Art-Server-1')
 			}
-		}	
+		}
+		stage('Checkout'){
+			step{
+				checkout([$class: 'GitSCM' , branches:[[name: './CSoftDevBranch']], doGenerateSubmoduleConfitguraions: false, extensions: [],submoduleCfg: [], useRemoteConfigs:[[url: 'https://github.com/rlennon/CrowSoft.git']]])
+			}
+		}
+	//	stage('Gradle Build'){
+		///	steps{
+			//	rtGradleRun(usePlugin: true, tool:'gradle-4.10.2', useWrapper: true, rootDor: '' , buildFile : 'build.gradle', resolverId: 'resolvecrosoft', deployerId: 'deploycrosoft' )
+			//sh 'rtGradleRun'
+		//	}
+	//	}
 	stage ('Build MVC'){
 		steps {
 			echo 'This step runs MSBuild.'
@@ -30,6 +46,17 @@ pipeline {
 			//sh "cd /var/lib/jenkins/workspace/test_pipeline@script/Projects/crowsoft_unittests"
 			}
 		}
+		//stage ('SonarQube'){
+		//	steps{
+			//	script{
+				//	def scannerhome= tool 'csoftsonar';
+				//	withSonarQubeEnv('csoftsonar'){
+				//		sh ''' ${scannerhome}/bin/linux-x86-64   -D sonar.login= sonar  -D sonar.password=sonarcsoft'''
+				//	}
+			//	}
+				
+		//	}
+		//}
 		
     stage ('Run Selenium Test') {
 	  	steps {
@@ -38,8 +65,8 @@ pipeline {
 		}	
 		
 		stage ('Artifactory package') {
-		steps {
-			    rtGradleResolver(id:"resolverGradle", serverId :"Artifactory")
+			steps {
+			    rtGradleResolver(id:"resolvecrosoft", serverId :"Art-Server-1")
 
 			}
 		}	
